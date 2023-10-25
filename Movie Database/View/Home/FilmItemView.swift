@@ -27,7 +27,7 @@ struct FilmItemView: View {
                     
                 } else {
                     Rectangle()
-                        .frame(width: 200, height: 300)
+                        .frame(width: 185, height: 280)
                         .clipShape(RoundedRectangle(cornerRadius:12))
                     Text("Oppenheimer")
                         .font(.headline)
