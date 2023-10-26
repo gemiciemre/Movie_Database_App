@@ -15,8 +15,8 @@ struct NavigationBarDetailView: View {
                     //some codes
                 }
             }label: {
-                Image(systemName: "chevron.left")
-                    .font(.title)
+                Image(systemName: "chevron.left.circle")
+                    .font(.largeTitle)
                     .foregroundColor(.white)
             }
             
@@ -25,8 +25,8 @@ struct NavigationBarDetailView: View {
             Button{
                 //Some Action
             }label: {
-                Image(systemName: "heart")
-                    .font(.title)
+                Image(systemName: "heart.circle")
+                    .font(.largeTitle)
                     .foregroundColor(.white)
             }
         }

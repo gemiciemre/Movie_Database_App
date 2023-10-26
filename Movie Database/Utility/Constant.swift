@@ -16,6 +16,10 @@ let banners: [Banner] = Bundle.main.decode("banner_image.json")
 // LAYOUT
 let columnSpacing: CGFloat = 10
 let rowSpacing: CGFloat = 10
+
 var gridLayout: [GridItem] {
     return Array(repeating: GridItem(.flexible(),spacing: rowSpacing), count: 2)
+}
+var gridLayoutFavoriteItem: [GridItem] {
+    return Array(repeating: GridItem(.flexible(),spacing: rowSpacing), count: 3)
 }
