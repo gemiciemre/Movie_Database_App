@@ -76,7 +76,7 @@ struct HomeView: View {
                 self.nowPlayingState.loadMovies(with: .nowPlaying)
             }
         }else{
-            DetailView(movie: movieClass.selectedMovie!)
+           // Some Codes
         }
     }
 }

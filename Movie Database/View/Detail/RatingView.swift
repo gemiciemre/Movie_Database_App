@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RatingView: View {
     
-    let voteAvarage: Double
+    let voteAvarage: String
     
     var body: some View {
         HStack(alignment: .center, spacing: 6){
@@ -27,5 +27,5 @@ struct RatingView: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    RatingView(voteAvarage: 0.0)
+    RatingView(voteAvarage: "0.0")
 }

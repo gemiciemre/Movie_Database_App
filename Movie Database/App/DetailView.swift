@@ -41,7 +41,7 @@ struct DetailView: View {
     var body: some View {
         VStack(alignment: .center,spacing: 0){
             ZStack {
-                ImageDetailView(movie: Movie.stubbedMovie)
+                ImageDetailView(imageURL: self.movie.posterURL)
                 NavigationBarDetailView()
                     .padding(.horizontal)
                     .padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
@@ -54,7 +54,17 @@ struct DetailView: View {
             VStack(alignment: .leading,spacing: 0){
                 ScrollView(.vertical,showsIndicators: false) {
                     HStack {
-                        HeaderDetailView()
+                        HeaderDetailView(
+                            title: self.movie.title,
+                            date: self.movie.releaseDate,
+                            imdb: "7.9",
+                            rating: self.movie.voteAverageText
+                            //reviewCount: <#T##String?#>,
+                            //category: <#T##String?#>,
+//                            year: <#T##String?#>,
+//                            duration: <#T##String?#>,
+//                            genders: <#T##[String]?#>
+                        )
                             .padding(.top)
                         Spacer()
                     }

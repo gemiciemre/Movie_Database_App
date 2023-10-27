@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ImageDetailView: View {
     
-    let movie: Movie
+    let imageURL: URL
+    let sampleURL: URL = URL(string: "https://image.tmdb.org/t/p/w500/8WUVHemHFH2ZIP6NWkwlHWsyrEL.jpg")!
     
     @ObservedObject var imageLoader = ImageLoader()
     
@@ -24,11 +25,16 @@ struct ImageDetailView: View {
             }
         }
         .onAppear {
-            self.imageLoader.loadImage(with: self.movie.posterURL)
+            self.imageLoader.loadImage(with: imageURL)
         }
     }
 }
 
 #Preview {
-    ImageDetailView(movie: Movie.stubbedMovie)
+    ImageDetailView(imageURL: URL(string: "https://image.tmdb.org/t/p/w500/8WUVHemHFH2ZIP6NWkwlHWsyrEL.jpg")!)
 }
+
+// Sonrasında Resimlerin Cacheden çekilmesiyle ilgileneceğim.
+
+
+

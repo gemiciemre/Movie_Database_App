@@ -8,9 +8,15 @@
 import SwiftUI
 
 struct DateInfoView: View {
+    
+    var category: String
+    var year: String
+    var duration: String
+    
+    
     var body: some View {
         HStack(alignment: .center, spacing: 10){
-            Text("PG-13")
+            Text(category)
                 .font(.system(.footnote, design: .rounded))
                 .frame(width: 50)
                 .fontWeight(.regular)
@@ -19,7 +25,7 @@ struct DateInfoView: View {
                 .padding(.vertical,3)
                 .background(Color.gray.opacity(0.5))
                 .clipShape(Capsule())
-            Text("2022")
+            Text(year)
                 .font(.system(.footnote, design: .rounded))
                 .frame(width: 50)
                 .fontWeight(.regular)
@@ -28,7 +34,7 @@ struct DateInfoView: View {
                 .padding(.vertical,3)
                 .background(Color.gray.opacity(0.5))
                 .clipShape(Capsule())
-            Text("2h 58m")
+            Text(duration)
                 .font(.system(.footnote, design: .rounded))
                 .frame(width: 50)
                 .fontWeight(.regular)
@@ -42,6 +48,6 @@ struct DateInfoView: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    DateInfoView()
+    DateInfoView(category: "category", year: "2023" , duration: "2h 30m")
         .background(Color.white)
 }

@@ -12,8 +12,11 @@ struct HeaderDetailView: View {
     var title: String?
     var date: String?
     var imdb: String?
-    var rating: Double?
+    var rating: String?
     var reviewCount: String?
+    var category: String?
+    var year: String?
+    var duration: String?
     
     var genders:[String]?
     
@@ -23,7 +26,7 @@ struct HeaderDetailView: View {
             HStack(alignment: .center,spacing: 6){
                 IMDBView(imdb: imdb ?? "**")
                 
-                RatingView(voteAvarage: rating ?? 0.0)
+                RatingView(voteAvarage: rating ?? "0.0")
                 
                 ReviewCountView()
                 
@@ -33,7 +36,7 @@ struct HeaderDetailView: View {
                 .fontWeight(.black)
                 .padding(.vertical,6)
             
-            DateInfoView()
+            DateInfoView(category: "category", year: "2023" , duration: "2h 30m")
             
             GenderHeaderView()
                 .padding(.vertical,6)

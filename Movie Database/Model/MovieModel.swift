@@ -59,6 +59,11 @@ struct Movie: Decodable,Identifiable{
         }
         return ratingText
     }
+    var voteAverageText: String {
+        let myDouble = Double(voteAverage)
+        let voteAverageText = String(format: "%.1f", myDouble)
+        return voteAverageText
+    }
     
     var scoreText: String {
         guard ratingText.count > 0 else {
