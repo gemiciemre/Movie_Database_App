@@ -7,12 +7,41 @@
 
 import SwiftUI
 
+
+struct MovieDetailView: View {
+    
+    let movieId: Int
+    @ObservedObject private var movieDetailState = MovieDetailState()
+    
+    var body: some View {
+        ZStack {
+            LoadingView(isLoading: self.movieDetailState.isLoading, error: self.movieDetailState.error) {
+                self.movieDetailState.loadMovie(id: self.movieId)
+            }
+            
+            if movieDetailState.movie != nil {
+                DetailView(movie: self.movieDetailState.movie!)
+                
+            }
+        }
+        .navigationBarTitle(movieDetailState.movie?.title ?? "")
+        .onAppear {
+            self.movieDetailState.loadMovie(id: self.movieId)
+        }
+    }
+}
+
+
+
 struct DetailView: View {
+    
+    let movie: Movie
+    let imageLoader = ImageLoader()
     
     var body: some View {
         VStack(alignment: .center,spacing: 0){
             ZStack {
-                ImageDetailView()
+                ImageDetailView(movie: Movie.stubbedMovie)
                 NavigationBarDetailView()
                     .padding(.horizontal)
                     .padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
@@ -63,6 +92,6 @@ struct DetailView: View {
 }
 
 #Preview {
-    DetailView()
+    MovieDetailView(movieId: Movie.stubbedMovie.id)
 }
 

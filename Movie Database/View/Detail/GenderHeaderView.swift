@@ -9,11 +9,11 @@ import SwiftUI
 
 struct GenderHeaderView: View {
     
-    let gender: [String] = ["Action", "Comedy", "Drama"]
+    let genders: [String] = ["Action", "Comedy", "Drama"]
     
     var body: some View {
         HStack {
-            ForEach(gender, id: \.self){ item in
+            ForEach(genders, id: \.self){ item in
                 if item != nil {
                     Circle()
                         .frame(width: 5 ,height: 5)

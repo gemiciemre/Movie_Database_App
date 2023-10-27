@@ -9,18 +9,26 @@ import SwiftUI
 
 struct HeaderDetailView: View {
     
+    var title: String?
+    var date: String?
+    var imdb: String?
+    var rating: Double?
+    var reviewCount: String?
+    
+    var genders:[String]?
+    
     
     var body: some View {
         VStack(alignment: .leading,spacing: 6){
             HStack(alignment: .center,spacing: 6){
-                IMDBView()
+                IMDBView(imdb: imdb ?? "**")
                 
-                RatingView()
+                RatingView(voteAvarage: rating ?? 0.0)
                 
                 ReviewCountView()
                 
             }
-            Text("Film Name")
+            Text("Selam")
                 .font(.largeTitle)
                 .fontWeight(.black)
                 .padding(.vertical,6)

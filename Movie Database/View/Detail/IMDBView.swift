@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct IMDBView: View {
+    
+    let imdb: String
+    
     var body: some View {
-        Text("IMDB: 7.9")
+        Text("IMDB: \(imdb)")
             .font(.system(.footnote, design: .rounded))
             .fontWeight(.regular)
             .foregroundStyle(.black)
@@ -20,5 +23,5 @@ struct IMDBView: View {
 }
 
 #Preview(traits:.sizeThatFitsLayout) {
-    IMDBView()
+    IMDBView(imdb: "")
 }

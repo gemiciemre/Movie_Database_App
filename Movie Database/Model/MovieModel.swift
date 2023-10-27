@@ -21,6 +21,7 @@ struct Movie: Decodable,Identifiable{
     let voteCount: Int
     let runTime: Int?
     let releaseDate: String?
+    let imdb_id: String?
     
     let genres: [MovieGenre]?
     let credits: MovieCredit?
