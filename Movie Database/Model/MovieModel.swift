@@ -12,6 +12,7 @@ struct MovieResponse: Decodable{
 }
 
 struct Movie: Decodable,Identifiable{
+    
     let id: Int
     let title: String
     let backdropPath: String?
@@ -19,9 +20,10 @@ struct Movie: Decodable,Identifiable{
     let overview: String
     let voteAverage: Double
     let voteCount: Int
-    let runTime: Int?
+    let runtime: Int?
     let releaseDate: String?
-    let imdb_id: String?
+    let imdbId: String?
+    let originalLanguage: String?
     
     let genres: [MovieGenre]?
     let credits: MovieCredit?
@@ -80,7 +82,7 @@ struct Movie: Decodable,Identifiable{
     }
     
     var durationText: String {
-        guard let runtime = self.runTime, runtime > 0 else {
+        guard let runtime = self.runtime, runtime > 0 else {
             return "n/a"
         }
         return Movie.durationFormatter.string(from: TimeInterval(runtime) * 60) ?? "n/a"
@@ -109,11 +111,15 @@ struct Movie: Decodable,Identifiable{
     var youtubeTrailers: [MovieVideo]? {
         videos?.results.filter { $0.youtubeURL != nil }
     }
+
+    var movieVideoKey: String{
+        videos?.results.first?.key ?? ""
+    }
     
 }
 
 
-struct MovieGenre: Decodable {
+struct MovieGenre: Decodable,Hashable {
     
     let name: String
 }
@@ -124,10 +130,11 @@ struct MovieCredit: Decodable {
     let crew: [MovieCrew]
 }
 
-struct MovieCast: Decodable, Identifiable {
+struct MovieCast: Decodable, Identifiable, Hashable {
     let id: Int
     let character: String
     let name: String
+    let profilePath: String
 }
 
 struct MovieCrew: Decodable, Identifiable {

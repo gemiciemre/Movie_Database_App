@@ -23,5 +23,5 @@ struct IMDBView: View {
 }
 
 #Preview(traits:.sizeThatFitsLayout) {
-    IMDBView(imdb: "")
+    IMDBView(imdb: "0.0")
 }

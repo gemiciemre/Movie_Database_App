@@ -12,6 +12,7 @@ struct MovieDetailView: View {
     
     let movieId: Int
     @ObservedObject private var movieDetailState = MovieDetailState()
+    @State private var playVideoURL: String?
     
     var body: some View {
         ZStack {
@@ -57,18 +58,17 @@ struct DetailView: View {
                         HeaderDetailView(
                             title: self.movie.title,
                             date: self.movie.releaseDate,
-                            imdb: "7.9",
-                            rating: self.movie.voteAverageText
-                            //reviewCount: <#T##String?#>,
-                            //category: <#T##String?#>,
-//                            year: <#T##String?#>,
-//                            duration: <#T##String?#>,
-//                            genders: <#T##[String]?#>
+                            imdb: "7.9", // I will fix.
+                            rating: self.movie.voteAverageText,
+                            language: self.movie.originalLanguage,
+                            year: self.movie.yearText,
+                            duration: self.movie.durationText,
+                            genres: self.movie.genres
                         )
                             .padding(.top)
                         Spacer()
                     }
-                    PlayButtonDetailView()
+                    PlayButtonDetailView(key: self.movie.movieVideoKey)
                         .padding(.horizontal)
                         .padding()
                     MovieOverviewView()
@@ -84,7 +84,7 @@ struct DetailView: View {
 //                        .padding(.trailing,250)
 //                        .foregroundStyle(.white)
 //                    
-                    TopCastsView()
+                    //TopCastsView(casts: self.movie.cast)
                 }
                 Spacer()
             }

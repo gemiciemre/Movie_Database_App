@@ -14,31 +14,35 @@ struct HeaderDetailView: View {
     var imdb: String?
     var rating: String?
     var reviewCount: String?
-    var category: String?
+    var language: String?
     var year: String?
     var duration: String?
     
-    var genders:[String]?
+    var genres:[MovieGenre]?
     
     
     var body: some View {
         VStack(alignment: .leading,spacing: 6){
             HStack(alignment: .center,spacing: 6){
-                IMDBView(imdb: imdb ?? "**")
+                IMDBView(imdb: imdb ?? "0.0")
                 
                 RatingView(voteAvarage: rating ?? "0.0")
                 
                 ReviewCountView()
                 
             }
-            Text("Selam")
+            Text(title ?? "Film Title")
                 .font(.largeTitle)
                 .fontWeight(.black)
                 .padding(.vertical,6)
             
-            DateInfoView(category: "category", year: "2023" , duration: "2h 30m")
+            DateInfoView(
+                language: language ?? "language",
+                year: year ?? "2023" ,
+                duration: duration ??  "2h 30m"
+            )
             
-            GenderHeaderView()
+            GenderHeaderView(genres: genres)
                 .padding(.vertical,6)
                 
         }

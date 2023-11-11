@@ -8,9 +8,21 @@
 import SwiftUI
 
 struct PlayButtonDetailView: View {
+    
+    let key: String?
+    var playVideoURL: URL? {
+        if let key = self.key, !key.isEmpty {
+            return URL(string: "https://youtube.com/watch?v=\(key)")
+        } else {
+            return URL(string: "https://youtube.com")
+        }
+    }
+    
+    @State private var showingVideo: Bool = false
+    
     var body: some View {
         Button(action: {
-            //someAction
+            showingVideo.toggle()
         }, label: {
             Spacer()
             Image(systemName: "play.rectangle")
@@ -27,9 +39,12 @@ struct PlayButtonDetailView: View {
             Color("ColorIMDB")
         )
         .clipShape(Capsule())
+        .sheet(isPresented:$showingVideo){
+            SafariView(url: (playVideoURL ?? URL(string: "https://youtube.com"))!)
+        }
     }
 }
 
 #Preview {
-    PlayButtonDetailView()
+    PlayButtonDetailView(key: "")
 }

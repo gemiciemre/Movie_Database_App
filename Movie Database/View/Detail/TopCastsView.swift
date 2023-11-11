@@ -9,23 +9,57 @@ import SwiftUI
 
 struct TopCastsView: View {
     
-    let topCast: [String] = ["CillianMurphy","EmilyBlunt","MattDemon","RobertDowney"]
+    let casts: [MovieCast] 
+    
+    init(casts: [MovieCast]? = nil) {
+        self.casts = casts ?? [
+            MovieCast(
+                id: 12835,
+                character: "Ray Garrison / Bloodshot",
+                name: "Vin Diesel", 
+                profilePath: "/7rwSXluNWZAluYMOEWBxkPmckES.jpg"
+            )
+        ]
+    }
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false){
             HStack{
-                ForEach(topCast, id: \.self){ item in
+                ForEach(casts.prefix(9), id: \.self){ item in
                     HStack{
-                        Image(item)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 50,height: 90)
-                            .clipShape(Capsule())
+//                        AsyncImage(url: URL(string:"https://image.tmdb.org/t/p/w500\(item.profilePath )")!)
+//                            //.resizable()
+//                            //.scaledToFit()
+//                            //.scaledToFill()
+//                            .
+//                            .frame(width: 50,height: 90)
+//                            .clipShape(Capsule())
+//
+                        AsyncImage(url: URL(string:"https://image.tmdb.org/t/p/w500\(item.profilePath )")!) { phase in
+                              switch phase {
+                              case .empty:
+                                  Image(systemName: "photo")
+                                      .frame(width: 50, height: 73)
+                              case .success(let image):
+                                  image.resizable()
+                                      .aspectRatio(contentMode: .fit)
+                                      .frame(maxWidth: 50, maxHeight: 73)
+                              case .failure:
+                                  Image(systemName: "photo")
+                                      .frame(width: 50, height: 73)
+                              @unknown default:
+                                  EmptyView()
+                                      .frame(width: 50, height: 73)
+                              }
+                          }
+                        .frame(width: 50, height: 73)
+                          .clipShape(Capsule())
+                        
                         VStack(alignment:.leading){
-                            Text("Chillan Murphy")
+                            Text(item.name)
                                 .foregroundStyle(.white)
                                 .font(.headline)
-                            Text("Character Name")
+                            Text(item.character)
                                 .foregroundStyle(.secondary)
                         }
                     }
