@@ -60,19 +60,16 @@ struct DetailView: View {
         
         // if our offset is roughly less than -225 (the amount scrolled / amount off screen)
         if offset < -sizeOffScreen {
-            // Since we want 75 px fixed on the screen we get our offset of -225 or anything less than. Take the abs value of
+            
             let imageOffset = abs(min(-sizeOffScreen, offset))
             
-            // Now we can the amount of offset above our size off screen. So if we've scrolled -250px our size offscreen is -225px we offset our image by an additional 25 px to put it back at the amount needed to remain offscreen/amount on screen.
             return imageOffset - sizeOffScreen
         }
         
         // Image was pulled down
         if offset > 0 {
             return -offset
-            
         }
-        
         return 0
     }
     
@@ -105,21 +102,13 @@ struct DetailView: View {
     private func getHeaderTitleOffset() -> CGFloat {
         let currentYPos = titleRect.midY
         
-        // (x - min) / (max - min) -> Normalize our values between 0 and 1
-        
-        // If our Title has surpassed the bottom of our image at the top
-        // Current Y POS will start at 75 in the beggining. We essentially only want to offset our 'Title' about 30px.
         if currentYPos < headerImageRect.maxY {
-            let minYValue: CGFloat = 50.0 // What we consider our min for our scroll offset
-            let maxYValue: CGFloat = collapsedImageHeight // What we start at for our scroll offset (75)
+            let minYValue: CGFloat = 50.0
+            let maxYValue: CGFloat = collapsedImageHeight
             let currentYValue = currentYPos
             
-            let percentage = max(-1, (currentYValue - maxYValue) / (maxYValue - minYValue)) // Normalize our values from 75 - 50 to be between 0 to -1, If scrolled past that, just default to -1
-            let finalOffset: CGFloat = -30.0 // We want our final offset to be -30 from the bottom of the image header view
-            
-            // We will start at 20 pixels from the bottom (under our sticky header)
-            // At the beginning, our percentage will be 0, with this resulting in 20 - (x * -30)
-            // as x increases, our offset will go from 20 to 0 to -30, thus translating our title from 20px to -30px.
+            let percentage = max(-1, (currentYValue - maxYValue) / (maxYValue - minYValue))
+            let finalOffset: CGFloat = -30.0
             
             return 20 - (percentage * finalOffset)
         }
@@ -165,8 +154,6 @@ struct DetailView: View {
                     
                     TopCastsView(casts: self.movie.cast)
                         .padding(.bottom,50)
-                    
-                    
                     
                 }//: VSTACK
                 .padding(.horizontal)
@@ -218,7 +205,7 @@ struct DetailView: View {
 }
 
 #Preview {
-//    MovieDetailView(movieId: Movie.stubbedMovie.id)
-    DetailView(movie: movieSample)
+    MovieDetailView(movieId: Movie.stubbedMovie.id)
+//    DetailView(movie: movieSample)
 }
 
