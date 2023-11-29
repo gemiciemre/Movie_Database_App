@@ -9,7 +9,12 @@ import SwiftUI
 
 struct IMDBView: View {
     
-    let imdb: String
+    var imdb: String
+    
+    init(imdb: String) {
+        self.imdb = imdb
+    }
+    
     
     var body: some View {
         Text("IMDB: \(imdb)")

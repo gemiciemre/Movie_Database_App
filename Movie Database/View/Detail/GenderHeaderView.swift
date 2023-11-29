@@ -9,23 +9,23 @@ import SwiftUI
 
 struct GenderHeaderView: View {
     
-    let genres: [MovieGenre]
+    var genres: [MovieGenre]
     
-    init(genres: [MovieGenre]? = nil) { self.genres = genres ??
-            [
-                MovieGenre(name: "DefaultGenre1"),
-                MovieGenre(name: "DefaultGenre2")
-            ]
-        }
+    init(genres: [MovieGenre]? = nil) { 
+        self.genres = genres ??
+        [
+            MovieGenre(id: 1, name: "DefaultGenre1"),
+            MovieGenre(id: 2, name: "DefaultGenre2")
+        ]
+    }
     
     var body: some View {
         HStack {
-            ForEach(genres, id: \.self){ item in
-                if item != nil {
-                    Circle()
-                        .frame(width: 5 ,height: 5)
-                        .foregroundStyle(Color("ColorIMDB"))
-                }
+            ForEach(self.genres){ item in
+                Circle()
+                    .frame(width: 5 ,height: 5)
+                    .foregroundStyle(Color("ColorIMDB"))
+                
                 Text(item.name)
                     .font(.system(.headline,design: .rounded))
                     .fontWeight(.light)

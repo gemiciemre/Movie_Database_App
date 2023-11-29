@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     
-    
     var body: some View {
         TabView(){
             HomeView(title: "Now Playing", movies: Movie.stubbedMovies)
@@ -22,7 +21,7 @@ struct ContentView: View {
                     Image(systemName: "heart")
                     Text("Favorites")
                 })
-            SearchView()
+            DetailView(movie: Movie.stubbedMovie)
                 .tabItem({
                     Image(systemName: "magnifyingglass")
                     Text("Search")

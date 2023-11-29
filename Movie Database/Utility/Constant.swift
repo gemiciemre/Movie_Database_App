@@ -9,7 +9,8 @@ import SwiftUI
 
 // DATA
 
-let banners: [Banner] = Bundle.main.decode("banner_image.json")
+let banners: [Banner] = Bundle.main.decodeNew("banner_image.json")
+let movieSample: Movie = Bundle.main.decodeNew("movie_info.json")
 
 
 
@@ -22,4 +23,44 @@ var gridLayout: [GridItem] {
 }
 var gridLayoutFavoriteItem: [GridItem] {
     return Array(repeating: GridItem(.flexible(),spacing: rowSpacing), count: 3)
+}
+
+
+//STRUCT
+
+class ViewFrame: ObservableObject {
+    var startingRect: CGRect?
+    
+    @Published var frame: CGRect {
+        willSet {
+            if startingRect == nil {
+                startingRect = newValue
+            }
+        }
+    }
+    
+    init() {
+        self.frame = .zero
+    }
+}
+
+struct GeometryGetter: View {
+    @Binding var rect: CGRect
+    
+    var body: some View {
+        GeometryReader { geometry in
+            AnyView(Color.clear)
+                .preference(key: RectanglePreferenceKey.self, value: geometry.frame(in: .global))
+        }.onPreferenceChange(RectanglePreferenceKey.self) { (value) in
+            self.rect = value
+        }
+    }
+}
+
+struct RectanglePreferenceKey: PreferenceKey {
+    static var defaultValue: CGRect = .zero
+    
+    static func reduce(value: inout CGRect, nextValue: () -> CGRect) {
+        value = nextValue()
+    }
 }

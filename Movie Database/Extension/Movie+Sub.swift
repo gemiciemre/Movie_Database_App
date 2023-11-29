@@ -16,7 +16,6 @@ extension Movie {
     static var stubbedMovie: Movie {
         stubbedMovies[0]
     }
-    
 }
 
 extension Bundle {
@@ -31,23 +30,34 @@ extension Bundle {
         return decodedModel
     }
     
-    func decode<T: Codable>(_ file: String) -> T{
-        // 1. Locate the JSON File
+    
+    func decodeNew<T:Codable> (_ file: String) -> T {
+        // 1. Locate the json file
         guard let url = self.url(forResource: file, withExtension: nil) else{
-            fatalError("Failed to locate \(file) in bundle.")
+            fatalError("Failed to locate \(file) in bundle. Bundle URL: \(self.bundleURL)")
         }
         // 2. Create a property for the data
-        guard let data = try? Data(contentsOf: url)else{
+        guard let data = try? Data(contentsOf: url) else{
             fatalError("Failed to load \(file) from bundle.")
         }
         // 3. Create a decoder
-        let decoder = JSONDecoder()
-        // 4. Create a property for the decoded data
-        guard let decodeData = try? decoder.decode(T.self, from: data) else{
-            fatalError("Failed to decode \(file) from bundle.")
+        let jsonDecoder = Utilty.jsonDecoder
+        // 4. Create a property for the decoded data,
+        
+//        guard let loaded = try? decoder.decode(T.self, from: data)else{
+//            fatalError("Failed to decode \(file) from bundle.")
+//        }
+        
+        do {
+            let loaded = try jsonDecoder.decode(T.self, from: data)
+            return loaded
+        } catch {
+            print("Decoding error: \(error)")
+            fatalError("Could not decode \(file) from bundle.")
         }
+
         // 5. Return the ready-to-use data
-        return decodeData
+//        return loaded
     }
     
     

@@ -29,7 +29,12 @@ struct HomeView: View {
                     NavigationBarView()
                         .padding(.horizontal,15)
                         .padding(.bottom)
-                        .padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
+//                        .padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
+                        .padding(.top, UIApplication
+                            .shared
+                            .connectedScenes
+                            .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
+                            .first { $0.isKeyWindow }?.safeAreaInsets.top)
                         .background(Color.white)
                         .shadow(color: Color.black.opacity(0.05), radius: 5,x: 0,y:5)
                     
@@ -62,8 +67,6 @@ struct HomeView: View {
                                             self.nowPlayingState.loadMovies(with: .nowPlaying)
                                         }
                                 }
-                                
-                                
                             }
                             // MARK: - FOOTER
                             FooterView()

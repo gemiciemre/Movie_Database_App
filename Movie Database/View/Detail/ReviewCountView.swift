@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct ReviewCountView: View {
+    
+    var popularity: String
+    
+    init(popularity: String) {
+        self.popularity = popularity
+    }
+    
     var body: some View {
-        Text("(Popularity: 160) ")
+        Text("(Popularity: \(popularity))")
             .font(.system(.footnote,design: .rounded))
             .fontWeight(.semibold)
             .foregroundStyle(Color.white)
@@ -17,5 +24,6 @@ struct ReviewCountView: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    ReviewCountView()
+    ReviewCountView(popularity: "0.0")
+        .background(Color.gray)
 }

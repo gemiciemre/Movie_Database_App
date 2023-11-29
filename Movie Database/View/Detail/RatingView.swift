@@ -9,7 +9,11 @@ import SwiftUI
 
 struct RatingView: View {
     
-    let voteAvarage: String
+    var voteAvarage: String
+    
+    init(voteAvarage: String) {
+        self.voteAvarage = voteAvarage
+    }
     
     var body: some View {
         HStack(alignment: .center, spacing: 6){

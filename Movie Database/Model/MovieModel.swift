@@ -7,23 +7,33 @@
 
 import Foundation
 
-struct MovieResponse: Decodable{
+struct MovieResponse: Codable{
     let results: [Movie]
 }
 
-struct Movie: Decodable,Identifiable{
+struct Movie: Codable,Identifiable, Hashable{
+    
+    static func == (lhs: Movie, rhs: Movie) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
     
     let id: Int
     let title: String
     let backdropPath: String?
     let posterPath: String?
     let overview: String
+    let popularity: Double
     let voteAverage: Double
     let voteCount: Int
     let runtime: Int?
     let releaseDate: String?
-    let imdbId: String?
     let originalLanguage: String?
+    let tagline: String?
     
     let genres: [MovieGenre]?
     let credits: MovieCredit?
@@ -61,10 +71,17 @@ struct Movie: Decodable,Identifiable{
         }
         return ratingText
     }
+    
     var voteAverageText: String {
         let myDouble = Double(voteAverage)
         let voteAverageText = String(format: "%.1f", myDouble)
         return voteAverageText
+    }
+    
+    var popularityText: String { // NEW STRUCT
+        let myPopularity = Double(popularity)
+        let popularityText = String(format: "%.1f", myPopularity)
+        return popularityText
     }
     
     var scoreText: String {
@@ -81,11 +98,23 @@ struct Movie: Decodable,Identifiable{
         return Movie.yearFormatter.string(from: date)
     }
     
+//    var durationText: String {
+//        guard let runtime = self.runtime, runtime > 0 else {
+//            return "n/a"
+//        }
+//        return Movie.durationFormatter.string(from: TimeInterval(runtime) * 60) ?? "n/a"
+//    }
+    
     var durationText: String {
         guard let runtime = self.runtime, runtime > 0 else {
+            print("DEBUG: Runtime is \(String(describing: self.runtime)) nil or zero")
             return "n/a"
         }
-        return Movie.durationFormatter.string(from: TimeInterval(runtime) * 60) ?? "n/a"
+
+        let hours = Int(runtime / 60)
+        let minutes = Int(runtime) % 60
+
+        return String(format: "%02d:%02d", hours, minutes)
     }
     
     var cast: [MovieCast]? {
@@ -119,36 +148,36 @@ struct Movie: Decodable,Identifiable{
 }
 
 
-struct MovieGenre: Decodable,Hashable {
-    
+struct MovieGenre: Codable,Identifiable{ // Hashable
+    let id: Int
     let name: String
 }
 
-struct MovieCredit: Decodable {
+struct MovieCredit: Codable {
     
     let cast: [MovieCast]
     let crew: [MovieCrew]
 }
 
-struct MovieCast: Decodable, Identifiable, Hashable {
+struct MovieCast: Codable, Identifiable, Hashable { // Hashable
     let id: Int
     let character: String
     let name: String
-    let profilePath: String
+    let profilePath: String?
 }
 
-struct MovieCrew: Decodable, Identifiable {
+struct MovieCrew: Codable, Identifiable {
     let id: Int
     let job: String
     let name: String
 }
 
-struct MovieVideoResponse: Decodable {
+struct MovieVideoResponse: Codable {
     
     let results: [MovieVideo]
 }
 
-struct MovieVideo: Decodable, Identifiable {
+struct MovieVideo: Codable, Identifiable {
     
     let id: String
     let key: String

@@ -35,7 +35,7 @@ struct TopCastsView: View {
 //                            .frame(width: 50,height: 90)
 //                            .clipShape(Capsule())
 //
-                        AsyncImage(url: URL(string:"https://image.tmdb.org/t/p/w500\(item.profilePath )")!) { phase in
+                        AsyncImage(url: URL(string:"https://image.tmdb.org/t/p/w500\(item.profilePath ?? "/7rwSXluNWZAluYMOEWBxkPmckES.jpg" )")!) { phase in
                               switch phase {
                               case .empty:
                                   Image(systemName: "photo")
