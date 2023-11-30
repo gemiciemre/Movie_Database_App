@@ -11,17 +11,17 @@ struct HomeView: View {
     // MARK: - PROPERTIES
     
     @State private var isSearchViewVisible = false
+    @State private var detailViewActive = false
+   
+    @State private var selectedMovieId: Int?
     
     @EnvironmentObject var movieClass : Movies
     
     @ObservedObject private var nowPlayingState = MovieListState()
     
-    let title: String
-    let movies: [Movie]
-    
     // MARK: - BODY
     var body: some View {
-        if isSearchViewVisible != true {
+//        if movieClass.showingMovie == false && movieClass.selectedMovie == nil {
             ZStack{
                 VStack(spacing: 0){
                     
@@ -49,16 +49,31 @@ struct HomeView: View {
                                 .frame(width: 350)
                                 .padding()
                             
+                            Text("Now Playing")
+                                .font(.avenirNext(size: 25))
+                                .fontWeight(.semibold)
+                                .foregroundColor(.black)
+                                .padding()
+                            
                             LazyVGrid(columns: gridLayout,spacing: 15){
                                 if nowPlayingState.movies != nil {
                                     ForEach(nowPlayingState.movies!){ item in
                                         FilmItemView(movie: item)
                                             .onTapGesture {
-                                                withAnimation(.easeOut){
-                                                    movieClass.selectedMovie = item
-                                                    isSearchViewVisible.toggle()
+//                                                withAnimation(.easeOut){
+//                                                    movieClass.selectedMovie = item
+//                                                    print("\(String(describing: movieClass.selectedMovie))")
+//                                                }
+                                                selectedMovieId = item.id
+                                                print("\(String(describing: selectedMovieId))")
+                                                detailViewActive = true
+                                            }
+                                            .fullScreenCover(isPresented: $detailViewActive){
+                                                if let selectedId = selectedMovieId {
+                                                    MovieDetailView(movieId: selectedId)
                                                 }
                                             }
+                                                             
                                     }
                                 }else{
                                     LoadingView(
@@ -78,12 +93,13 @@ struct HomeView: View {
             .onAppear{
                 self.nowPlayingState.loadMovies(with: .nowPlaying)
             }
-        }else{
-           // Some Codes
-        }
+//        }
+//    else{
+//            //MovieDetailView(movieId: movieClass.selectedMovie.id)
+//        }
     }
 }
 
 #Preview {
-    HomeView(title: "Now Playing", movies: Movie.stubbedMovies)
+    HomeView()
 }

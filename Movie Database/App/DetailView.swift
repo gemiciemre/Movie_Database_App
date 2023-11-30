@@ -24,7 +24,6 @@ struct MovieDetailView: View {
                 
             }
         }
-        .navigationBarTitle(movieDetailState.movie?.title ?? "")
         .onAppear {
             self.movieDetailState.loadMovie(id: self.movieId)
         }
@@ -39,7 +38,6 @@ struct DetailView: View {
     
     let movie: Movie
     let imageLoader = ImageLoader()
-    let imageURL = URL(string: "https://image.tmdb.org/t/p/w500/8WUVHemHFH2ZIP6NWkwlHWsyrEL.jpg")
     
     private let imageHeight: CGFloat = 500
     private let collapsedImageHeight: CGFloat = 75
@@ -166,7 +164,7 @@ struct DetailView: View {
             GeometryReader { geometry in
                 // 3
                 ZStack(alignment: .bottom) {
-                    AsyncImage(url: imageURL) { phase in
+                    AsyncImage(url: self.movie.posterURL) { phase in
                         switch phase {
                         case .success(let image):
                             // Resim başarıyla yüklendi

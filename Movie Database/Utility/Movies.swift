@@ -10,4 +10,5 @@ import Foundation
 class Movies: ObservableObject {
     @Published var showingMovie: Bool = false
     @Published var selectedMovie: Movie? = nil
+    @Published var movieId: Int = 0
 }
