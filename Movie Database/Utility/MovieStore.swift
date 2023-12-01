@@ -101,7 +101,4 @@ class MovieStore: MovieService{
             completion(result)
         }
     }
-    
-    
-    
 }

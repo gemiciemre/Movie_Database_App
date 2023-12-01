@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct MovieDetailView: View {
-        
+    
     let movieId: Int
     @ObservedObject private var movieDetailState = MovieDetailState()
     
@@ -164,6 +164,7 @@ struct DetailView: View {
             GeometryReader { geometry in
                 // 3
                 ZStack(alignment: .bottom) {
+                    
                     AsyncImage(url: self.movie.posterURL) { phase in
                         switch phase {
                         case .success(let image):
@@ -203,7 +204,10 @@ struct DetailView: View {
 }
 
 #Preview {
-    MovieDetailView(movieId: Movie.stubbedMovie.id)
+    NavigationStack {
+        MovieDetailView(movieId: Movie.stubbedMovie.id)
+    }
 //    DetailView(movie: movieSample)
 }
 
+//movieId: Movie.stubbedMovie.id

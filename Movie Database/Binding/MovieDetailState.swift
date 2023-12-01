@@ -11,7 +11,7 @@ class MovieDetailState: ObservableObject {
     
     private let movieService: MovieService
     @Published var movie: Movie?
-    @Published var isLoading = false
+    @Published var isLoading = false //true
     @Published var error: NSError?
     
     init(movieService: MovieService = MovieStore.shared) {
@@ -21,6 +21,8 @@ class MovieDetailState: ObservableObject {
     func loadMovie(id: Int) {
         self.movie = nil
         self.isLoading = false
+        self.error = nil //added later
+        
         self.movieService.fetchMovie(id: id) {[weak self] (result) in
             guard let self = self else { return }
             
