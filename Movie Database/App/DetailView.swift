@@ -188,10 +188,24 @@ struct DetailView: View {
                         }
                     }
                     // 4
-                    Text(self.movie.tagline ?? "")
-                        .font(.avenirNext(size: 17))
-                        .foregroundColor(.white)
-                        .offset(x: 0, y: self.getHeaderTitleOffset())
+                    VStack {
+                        HStack {
+                            Button{
+                                
+                            }label: {
+                                Image(systemName: "chevron.left.circle")
+                                    .font(.title)
+                                    .foregroundColor(.white)
+                            }
+                            Spacer()
+                        }
+                        .padding()
+                        Text(self.movie.tagline ?? "")
+                            .font(.avenirNext(size: 17))
+                            .foregroundColor(.white)
+                            .offset(x: 0, y: self.getHeaderTitleOffset())
+                    }
+                    
                 }
                 .clipped()
                 .offset(x: 0, y: self.getOffsetForHeaderImage(geometry))

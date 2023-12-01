@@ -12,7 +12,7 @@ struct HomeView: View {
     
     @State private var isSearchViewVisible = false
     @State private var detailViewActive = false
-   
+    
     @State private var selectedMovieId: Int?
     
     @EnvironmentObject var movieClass : Movies
@@ -21,7 +21,8 @@ struct HomeView: View {
     
     // MARK: - BODY
     var body: some View {
-//        if movieClass.showingMovie == false && movieClass.selectedMovie == nil {
+        //        if movieClass.showingMovie == false && movieClass.selectedMovie == nil {
+        NavigationView {
             ZStack{
                 VStack(spacing: 0){
                     
@@ -29,7 +30,7 @@ struct HomeView: View {
                     NavigationBarView()
                         .padding(.horizontal,15)
                         .padding(.bottom)
-//                        .padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
+                    //                        .padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
                         .padding(.top, UIApplication
                             .shared
                             .connectedScenes
@@ -58,22 +59,9 @@ struct HomeView: View {
                             LazyVGrid(columns: gridLayout,spacing: 15){
                                 if nowPlayingState.movies != nil {
                                     ForEach(nowPlayingState.movies!){ item in
-                                        FilmItemView(movie: item)
-                                            .onTapGesture {
-//                                                withAnimation(.easeOut){
-//                                                    movieClass.selectedMovie = item
-//                                                    print("\(String(describing: movieClass.selectedMovie))")
-//                                                }
-                                                selectedMovieId = item.id
-                                                print("\(String(describing: selectedMovieId))")
-                                                detailViewActive = true
-                                            }
-                                            .fullScreenCover(isPresented: $detailViewActive){
-                                                if let selectedId = selectedMovieId {
-                                                    MovieDetailView(movieId: selectedId)
-                                                }
-                                            }
-                                                             
+                                        NavigationLink(destination: MovieDetailView(movieId: item.id)){
+                                            FilmItemView(movie: item)
+                                        }
                                     }
                                 }else{
                                     LoadingView(
@@ -93,13 +81,27 @@ struct HomeView: View {
             .onAppear{
                 self.nowPlayingState.loadMovies(with: .nowPlaying)
             }
-//        }
-//    else{
-//            //MovieDetailView(movieId: movieClass.selectedMovie.id)
-//        }
+        }  
     }
 }
 
 #Preview {
     HomeView()
 }
+
+
+
+//.onTapGesture {
+////                                                withAnimation(.easeOut){
+////                                                    movieClass.selectedMovie = item
+////                                                    print("\(String(describing: movieClass.selectedMovie))")
+////                                                }
+//    selectedMovieId = item.id
+//    print("\(String(describing: selectedMovieId))")
+//    detailViewActive = true
+//}
+//.sheet(isPresented: $detailViewActive){
+//    if let selectedId = selectedMovieId {
+//        MovieDetailView(movieId: selectedId)
+//    }
+//}
