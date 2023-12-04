@@ -10,6 +10,10 @@ import SwiftUI
 struct HomeView: View {
     // MARK: - PROPERTIES
     
+    init() {
+        UINavigationBar.changeAppearance(clear: true)
+    }
+    
     @State private var isSearchViewVisible = false
     @State private var detailViewActive = false
     
@@ -17,7 +21,9 @@ struct HomeView: View {
     
     @EnvironmentObject var movieClass : Movies
     
+    
     @ObservedObject private var nowPlayingState = MovieListState()
+    
     
     // MARK: - BODY
     var body: some View {
@@ -81,7 +87,8 @@ struct HomeView: View {
             .onAppear{
                 self.nowPlayingState.loadMovies(with: .nowPlaying)
             }
-        }  
+        }
+        .accentColor(.black)
     }
 }
 
@@ -105,3 +112,4 @@ struct HomeView: View {
 //        MovieDetailView(movieId: selectedId)
 //    }
 //}
+

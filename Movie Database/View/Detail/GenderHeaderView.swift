@@ -21,7 +21,7 @@ struct GenderHeaderView: View {
     
     var body: some View {
         HStack {
-            ForEach(self.genres){ item in
+            ForEach(self.genres.prefix(4)){ item in
                 Circle()
                     .frame(width: 5 ,height: 5)
                     .foregroundStyle(Color("ColorIMDB"))

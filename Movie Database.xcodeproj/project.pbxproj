@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EB294B452AE3D35A00BFBE26 /* Movie+Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB294B442AE3D35A00BFBE26 /* Movie+Sub.swift */; };
 		EB5026C92B17A22A004D52E6 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5026C82B17A22A004D52E6 /* Font.swift */; };
+		EB585CC02B1E278A002F070A /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB585CBF2B1E278A002F070A /* NavigationBar.swift */; };
 		EB8397BD2B0BBC2100E32DDD /* movie_list.json in Resources */ = {isa = PBXBuildFile; fileRef = EB8397BB2B0BBC2100E32DDD /* movie_list.json */; };
 		EB8397BE2B0BBC2100E32DDD /* movie_info.json in Resources */ = {isa = PBXBuildFile; fileRef = EB8397BC2B0BBC2100E32DDD /* movie_info.json */; };
 		EB9FAFA42AEAA90D0010EBF0 /* MovieListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9FAFA32AEAA90D0010EBF0 /* MovieListState.swift */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		EB294B442AE3D35A00BFBE26 /* Movie+Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+Sub.swift"; sourceTree = "<group>"; };
 		EB5026C82B17A22A004D52E6 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		EB585CBF2B1E278A002F070A /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		EB8397BB2B0BBC2100E32DDD /* movie_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = movie_list.json; sourceTree = "<group>"; };
 		EB8397BC2B0BBC2100E32DDD /* movie_info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = movie_info.json; sourceTree = "<group>"; };
 		EB9FAFA32AEAA90D0010EBF0 /* MovieListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListState.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 			children = (
 				EB294B442AE3D35A00BFBE26 /* Movie+Sub.swift */,
 				EB5026C82B17A22A004D52E6 /* Font.swift */,
+				EB585CBF2B1E278A002F070A /* NavigationBar.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				EBB6422E2AE9277800EBF324 /* ReviewCountView.swift in Sources */,
 				EBB6424F2AEA5F7400EBF324 /* ActivityIndicatorView.swift in Sources */,
 				EB9FAFA62AEAC8B40010EBF0 /* Movies.swift in Sources */,
+				EB585CC02B1E278A002F070A /* NavigationBar.swift in Sources */,
 				EBB642302AE9297700EBF324 /* DateInfoView.swift in Sources */,
 				EBE30ED82AE418180070E66B /* SearchView.swift in Sources */,
 				EBB6423C2AEA252300EBF324 /* PlayButtonDetailView.swift in Sources */,

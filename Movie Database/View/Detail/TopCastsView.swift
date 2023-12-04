@@ -15,9 +15,9 @@ struct TopCastsView: View {
         self.casts = casts ?? [
             MovieCast(
                 id: 12835,
-                character: "Ray Garrison / Bloodshot",
-                name: "Vin Diesel", 
-                profilePath: "/7rwSXluNWZAluYMOEWBxkPmckES.jpg"
+                character: "Character Name",
+                name: "Artist Name",
+                profilePath: ""
             )
         ]
     }

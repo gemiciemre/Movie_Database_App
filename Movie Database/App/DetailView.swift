@@ -13,6 +13,7 @@ struct MovieDetailView: View {
     let movieId: Int
     @ObservedObject private var movieDetailState = MovieDetailState()
     
+    
     var body: some View {
         ZStack {
             LoadingView(isLoading: self.movieDetailState.isLoading, error: self.movieDetailState.error) {
@@ -21,7 +22,6 @@ struct MovieDetailView: View {
             
             if movieDetailState.movie != nil {
                 DetailView(movie: self.movieDetailState.movie!)
-                
             }
         }
         .onAppear {
@@ -36,6 +36,8 @@ struct DetailView: View {
     
     // MARK: - PROPERTIES
     
+    
+    
     let movie: Movie
     let imageLoader = ImageLoader()
     
@@ -47,6 +49,7 @@ struct DetailView: View {
     @State private var titleRect: CGRect = .zero
     @State private var headerImageRect: CGRect = .zero
     
+    @Environment(\.dismiss) private var dismiss
     
     func getScrollOffset(_ geometry: GeometryProxy) -> CGFloat {
         geometry.frame(in: .global).minY
@@ -80,7 +83,7 @@ struct DetailView: View {
             return imageHeight + offset
         }
         
-        return imageHeight
+        return imageHeight + 20
     }
     
     // at 0 offset our blur will be 0
@@ -117,7 +120,7 @@ struct DetailView: View {
     // MARK: - BODY
     
     var body: some View {
-        ScrollView{
+        ScrollView(.vertical,showsIndicators: false){
             VStack{
                 VStack(alignment: .center,spacing: 0){
                     HStack {
@@ -189,17 +192,17 @@ struct DetailView: View {
                     }
                     // 4
                     VStack {
-                        HStack {
-                            Button{
-                                
-                            }label: {
-                                Image(systemName: "chevron.left.circle")
-                                    .font(.title)
-                                    .foregroundColor(.white)
-                            }
-                            Spacer()
-                        }
-                        .padding()
+//                        HStack {
+//                            Button{
+//                                
+//                            }label: {
+//                                Image(systemName: "chevron.left.circle")
+//                                    .font(.title)
+//                                    .foregroundColor(.white)
+//                            }
+//                            Spacer()
+//                        }
+//                        .padding()
                         Text(self.movie.tagline ?? "")
                             .font(.avenirNext(size: 17))
                             .foregroundColor(.white)
@@ -214,6 +217,9 @@ struct DetailView: View {
         }
         .background(Color.black)
         .ignoresSafeArea(edges: .all)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: NavBackButton(dismiss: self.dismiss))
+        
     }
 }
 
@@ -225,3 +231,18 @@ struct DetailView: View {
 }
 
 //movieId: Movie.stubbedMovie.id
+
+struct NavBackButton: View {
+    let dismiss: DismissAction
+    
+    var body: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "chevron.backward.circle.fill")
+                .resizable()
+                .font(.title2)
+                .foregroundStyle(Color("ColorIMDB"))
+        }
+    }
+}
