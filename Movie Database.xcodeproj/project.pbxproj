@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB17696E2B1F8A8F002B0CF8 /* MovieSearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17696D2B1F8A8F002B0CF8 /* MovieSearchState.swift */; };
 		EB294B452AE3D35A00BFBE26 /* Movie+Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB294B442AE3D35A00BFBE26 /* Movie+Sub.swift */; };
 		EB5026C92B17A22A004D52E6 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5026C82B17A22A004D52E6 /* Font.swift */; };
 		EB585CC02B1E278A002F070A /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB585CBF2B1E278A002F070A /* NavigationBar.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB17696D2B1F8A8F002B0CF8 /* MovieSearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchState.swift; sourceTree = "<group>"; };
 		EB294B442AE3D35A00BFBE26 /* Movie+Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+Sub.swift"; sourceTree = "<group>"; };
 		EB5026C82B17A22A004D52E6 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		EB585CBF2B1E278A002F070A /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				EBE30EDA2AE44C1E0070E66B /* ImageLoader.swift */,
 				EB9FAFA32AEAA90D0010EBF0 /* MovieListState.swift */,
 				EB9FAFA72AEACCBB0010EBF0 /* MovieDetailState.swift */,
+				EB17696D2B1F8A8F002B0CF8 /* MovieSearchState.swift */,
 			);
 			path = Binding;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				EBB642342AE93CB100EBF324 /* CustomShapeDetailView.swift in Sources */,
 				EBE30EC72AE3E31D0070E66B /* BannerModel.swift in Sources */,
 				EB9FAFA42AEAA90D0010EBF0 /* MovieListState.swift in Sources */,
+				EB17696E2B1F8A8F002B0CF8 /* MovieSearchState.swift in Sources */,
 				EBB6423A2AEA18C600EBF324 /* ImageDetailView.swift in Sources */,
 				EBB642402AEA35F100EBF324 /* TopCastsView.swift in Sources */,
 				EBE30ED02AE3EF6E0070E66B /* FilmBannerTabView.swift in Sources */,
@@ -558,8 +562,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -587,8 +591,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

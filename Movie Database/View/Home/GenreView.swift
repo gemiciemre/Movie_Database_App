@@ -161,7 +161,6 @@ struct GenreView: View {
         }
         .font(.system(.callout,design: .serif))
         .foregroundColor(Color.gray)
-        .padding(.horizontal)
         .frame(maxHeight: 260)
     }
 }

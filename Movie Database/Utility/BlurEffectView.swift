@@ -22,4 +22,5 @@ struct BlurEffectView: UIViewRepresentable{
 
 #Preview {
     BlurEffectView(style: .systemMaterialDark)
+        .ignoresSafeArea()
 }

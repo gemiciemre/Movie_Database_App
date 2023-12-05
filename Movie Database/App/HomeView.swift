@@ -21,7 +21,6 @@ struct HomeView: View {
     
     @EnvironmentObject var movieClass : Movies
     
-    
     @ObservedObject private var nowPlayingState = MovieListState()
     
     
@@ -36,7 +35,6 @@ struct HomeView: View {
                     NavigationBarView()
                         .padding(.horizontal,15)
                         .padding(.bottom)
-                    //                        .padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
                         .padding(.top, UIApplication
                             .shared
                             .connectedScenes
@@ -53,8 +51,8 @@ struct HomeView: View {
                                 .frame(minHeight: 310)
                             
                             GenreView()
-                                .frame(width: 350)
-                                .padding()
+//                                .frame(width: 350)
+                                .padding(.vertical)
                             
                             Text("Now Playing")
                                 .font(.avenirNext(size: 25))
@@ -87,8 +85,11 @@ struct HomeView: View {
             .onAppear{
                 self.nowPlayingState.loadMovies(with: .nowPlaying)
             }
+//            .background(Color("ColorBackground"))
         }
         .accentColor(.black)
+        
+        
     }
 }
 

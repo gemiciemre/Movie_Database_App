@@ -114,7 +114,7 @@ struct Movie: Codable,Identifiable, Hashable{
         let hours = Int(runtime / 60)
         let minutes = Int(runtime) % 60
 
-        return String(format: "%02d:%02d", hours, minutes)
+        return String(format: "%02d h %02dm", hours, minutes)
     }
     
     var cast: [MovieCast]? {
@@ -142,7 +142,14 @@ struct Movie: Codable,Identifiable, Hashable{
     }
 
     var movieVideoKey: String{
-        videos?.results.first?.key ?? ""
+//        videos?.results[0].key ?? ""
+        if let officialTrailer = videos?.results.first(where: { $0.name.contains("Official Trailer") }) {
+            let keyOfOfficialTrailer = officialTrailer.key
+            return keyOfOfficialTrailer
+        } else {
+            print("Official Trailer bulunamadı.")
+            return ""
+        }
     }
     
 }

@@ -39,6 +39,7 @@ struct PlayButtonDetailView: View {
             Color("ColorIMDB")
         )
         .clipShape(Capsule())
+        .shadow(color: .black, radius: 2, x: 0, y: 2)
         .sheet(isPresented:$showingVideo){
             SafariView(url: (playVideoURL ?? URL(string: "https://youtube.com"))!)
         }

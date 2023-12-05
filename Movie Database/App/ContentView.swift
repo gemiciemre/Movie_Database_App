@@ -21,7 +21,7 @@ struct ContentView: View {
                     Image(systemName: "heart")
                     Text("Favorites")
                 })
-            DetailView(movie: Movie.stubbedMovie)
+            SearchView()
                 .tabItem({
                     Image(systemName: "magnifyingglass")
                     Text("Search")

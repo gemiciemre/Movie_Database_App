@@ -83,7 +83,7 @@ struct DetailView: View {
             return imageHeight + offset
         }
         
-        return imageHeight + 20
+        return imageHeight
     }
     
     // at 0 offset our blur will be 0
@@ -154,14 +154,16 @@ struct DetailView: View {
                         .foregroundStyle(.white)
                     
                     TopCastsView(casts: self.movie.cast)
+                        .padding(.top)
                         .padding(.bottom,50)
+                    Spacer(minLength: 50)
                     
                 }//: VSTACK
                 .padding(.horizontal)
                 .padding(.top, 16.0)
-                .background(BlurEffectView(style: .dark).padding(.top,-50))
+//                .background(BlurEffectView(style: .dark))//.padding(.top,-50))
             }
-            .offset(y: imageHeight + 16)
+            .offset(y: imageHeight) // + 16
             .background(GeometryGetter(rect: $articleContent.frame))
             
             GeometryReader { geometry in
@@ -192,17 +194,6 @@ struct DetailView: View {
                     }
                     // 4
                     VStack {
-//                        HStack {
-//                            Button{
-//                                
-//                            }label: {
-//                                Image(systemName: "chevron.left.circle")
-//                                    .font(.title)
-//                                    .foregroundColor(.white)
-//                            }
-//                            Spacer()
-//                        }
-//                        .padding()
                         Text(self.movie.tagline ?? "")
                             .font(.avenirNext(size: 17))
                             .foregroundColor(.white)
@@ -215,7 +206,7 @@ struct DetailView: View {
             }.frame(height: imageHeight)
                 .offset(x: 0, y: -(articleContent.startingRect?.maxY ?? UIScreen.main.bounds.height))
         }
-        .background(Color.black)
+        .background(Color("ColorBackground"))
         .ignoresSafeArea(edges: .all)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: NavBackButton(dismiss: self.dismiss))
@@ -241,8 +232,10 @@ struct NavBackButton: View {
         } label: {
             Image(systemName: "chevron.backward.circle.fill")
                 .resizable()
-                .font(.title2)
+                .font(.title)
+                .shadow(color: .black, radius: 2, x: 0, y: 2)
                 .foregroundStyle(Color("ColorIMDB"))
+                
         }
     }
 }

@@ -21,15 +21,15 @@ struct FilmItemView: View {
                     Image(uiImage:self.imageLoader.image!)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 185, height: 280)
-                        .background(Color.gray)
+                        .frame(width: 185, height: 279)
                         .clipShape(RoundedRectangle(cornerRadius:12))
+                        .shadow(color: .gray, radius: 2, x: 0, y: 2)
                     
                 } else {
                     Rectangle()
-                        .frame(width: 185, height: 280)
+                        .frame(width: 185, height: 279)
                         .clipShape(RoundedRectangle(cornerRadius:12))
-                    Text("Oppenheimer")
+                    Text("Movie Title")
                         .font(.headline)
                 }
                 
@@ -40,6 +40,7 @@ struct FilmItemView: View {
                 .lineLimit(1)
                 .multilineTextAlignment(.center)
         }//: VSTACK
+        
         .onAppear{
             self.imageLoader.loadImage(with: self.movie.posterURL)
         }
