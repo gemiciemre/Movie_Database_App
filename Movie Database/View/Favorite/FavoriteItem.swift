@@ -10,7 +10,11 @@ import SwiftUI
 struct FavoriteItem: View {
     
     @ObservedObject var imageLoader = ImageLoader()
-    let movie: Movie
+    
+    @State var movieID: Int?
+    @State var movie: Movie
+    
+    
     
     var body: some View {
         VStack(alignment: .center, spacing: 6){
@@ -41,7 +45,11 @@ struct FavoriteItem: View {
             }
         }//: VSTACK
         .onAppear{
-            self.imageLoader.loadImage(with: self.movie.posterURL)
+            if let movieID = movieID {
+                self.movie.id = movieID
+                self.imageLoader.loadImage(with: self.movie.posterURL)
+            }
+            //            self.imageLoader.loadImage(with: self.movie.posterURL)
         }
     }
 }

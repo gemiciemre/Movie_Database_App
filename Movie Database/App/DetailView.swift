@@ -209,8 +209,14 @@ struct DetailView: View {
         .background(Color("ColorBackground"))
         .ignoresSafeArea(edges: .all)
         .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: NavBackButton(dismiss: self.dismiss))
-        
+        .toolbar{
+            ToolbarItem(placement: .topBarLeading){
+                NavBackButton(dismiss: self.dismiss)
+            }
+            ToolbarItem(placement: .topBarTrailing){
+                FavoriteButton(movieID: self.movie.id)
+            }
+        }
     }
 }
 
@@ -236,6 +242,32 @@ struct NavBackButton: View {
                 .shadow(color: .black, radius: 2, x: 0, y: 2)
                 .foregroundStyle(Color("ColorIMDB"))
                 
+        }
+    }
+}
+
+struct FavoriteButton: View {
+    
+    @StateObject private var favoriteManager = Favorite()
+    let movieID: Int
+    
+    var body: some View {
+        Button {
+            favoriteManager.toggleFavorite(movieID: self.movieID)
+            if let favoriteIDs = UserDefaults.standard.array(forKey: "favoriteMovieIDs") as? [Int] {
+                print("Favorite Movie IDs:")
+                        for item in favoriteIDs {
+                            print(item)
+                        }
+            } else {
+                print("Favorite Movie IDs not found in UserDefaults")
+            }
+        } label: {
+            Image(systemName: favoriteManager.favoriteMovieIDs.contains(self.movieID) ? "heart.circle.fill" : "heart.circle")
+                .resizable()
+                .font(.title)
+                .shadow(color: .black, radius: 2, x: 0, y: 2)
+                .foregroundStyle(Color("ColorIMDB"))
         }
     }
 }

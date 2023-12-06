@@ -64,3 +64,42 @@ struct RectanglePreferenceKey: PreferenceKey {
         value = nextValue()
     }
 }
+
+
+
+class Favorite: ObservableObject{
+    
+    @Published var favoriteMovieIDs: Set<Int> = []
+    
+    //: Buradaki init sayesinde array sıfırlanmıyor.
+    init() {
+           loadFavoriteMovieIDs()
+       }
+    
+    func toggleFavorite(movieID: Int){
+        if favoriteMovieIDs.contains(movieID){
+            favoriteMovieIDs.remove(movieID)
+        }else{
+            favoriteMovieIDs.insert(movieID)
+        }
+        saveFavoriteMovieIDs()
+    }
+    
+    func loadFavoriteMovieIDs(){
+        if let favoriteIDs = UserDefaults.standard.array(forKey: "favoriteMovieIDs") as? [Int]{
+            favoriteMovieIDs = Set(favoriteIDs)
+        }
+    }
+        
+    func saveFavoriteMovieIDs(){
+        UserDefaults.standard.set(Array(favoriteMovieIDs), forKey: "favoriteMovieIDs")
+        
+        DispatchQueue.main.async {
+            self.loadFavoriteMovieIDs()
+        }
+    }
+    
+    
+    
+    
+}

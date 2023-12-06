@@ -22,7 +22,7 @@ struct Movie: Codable,Identifiable, Hashable{
     }
     
     
-    let id: Int
+    var id: Int
     let title: String
     let backdropPath: String?
     let posterPath: String?
@@ -151,7 +151,6 @@ struct Movie: Codable,Identifiable, Hashable{
             return ""
         }
     }
-    
 }
 
 
