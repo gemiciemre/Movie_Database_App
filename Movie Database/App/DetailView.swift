@@ -256,9 +256,9 @@ struct FavoriteButton: View {
             favoriteManager.toggleFavorite(movieID: self.movieID)
             if let favoriteIDs = UserDefaults.standard.array(forKey: "favoriteMovieIDs") as? [Int] {
                 print("Favorite Movie IDs:")
-                        for item in favoriteIDs {
-                            print(item)
-                        }
+                for item in favoriteIDs {
+                    print(item)
+                }
             } else {
                 print("Favorite Movie IDs not found in UserDefaults")
             }

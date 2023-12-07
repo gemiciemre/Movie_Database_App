@@ -92,14 +92,9 @@ class Favorite: ObservableObject{
     }
         
     func saveFavoriteMovieIDs(){
+        print("SaveFavorite Funciton Called.")
         UserDefaults.standard.set(Array(favoriteMovieIDs), forKey: "favoriteMovieIDs")
+        print("Saved to UserDefaults")
         
-        DispatchQueue.main.async {
-            self.loadFavoriteMovieIDs()
-        }
     }
-    
-    
-    
-    
 }

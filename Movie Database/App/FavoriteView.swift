@@ -9,16 +9,14 @@ import SwiftUI
 
 struct FavoriteView: View {
     
-    var movie: Movie
 
-    @StateObject var favoriteManager = Favorite()
+    @ObservedObject var favoriteManager = Favorite()
     
     @State private var favoriteSearch: String = ""
 
-    let movies: [Movie]
     
     var body: some View {
-
+        
         NavigationView{
             VStack(alignment:.center,spacing: 0){
                 NavigationBarView()
@@ -43,17 +41,22 @@ struct FavoriteView: View {
                     LazyVGrid(columns: gridLayoutFavoriteItem,spacing: 15){
                         ForEach(Array(favoriteManager.favoriteMovieIDs), id: \.self){ item in
                             NavigationLink(destination: MovieDetailView(movieId: item)){
-                                FavoriteItem(movieID: item, movie: Movie.stubbedMovie)
+                                FavoriteItem(movieID: item)
                             }
                         }
                     }
                 }
             }
-            .ignoresSafeArea(.all,edges:.top)   
+            .ignoresSafeArea(.all,edges:.top)
         }
+        .onAppear{
+            favoriteManager.loadFavoriteMovieIDs()
+        }
+        
     }
 }
 
 #Preview {
-    FavoriteView(movie: Movie.stubbedMovie, movies: Movie.stubbedMovies)
+    FavoriteView()
+        .environmentObject(Favorite())
 }
