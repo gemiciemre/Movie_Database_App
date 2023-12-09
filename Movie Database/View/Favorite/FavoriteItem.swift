@@ -9,8 +9,7 @@ import SwiftUI
 
 struct FavoriteItem: View {
     
-    @ObservedObject private var movieDetailState = MovieDetailState()
-    @StateObject var imageLoader = ImageLoader()
+    @StateObject var movieFavoriteState = MovieFavoriteState()
     
     @State var movie: Movie = Movie.stubbedMovie
     
@@ -20,73 +19,34 @@ struct FavoriteItem: View {
     var body: some View {
         VStack(alignment: .center, spacing: 6){
             ZStack{
-                
-                AsyncImage(url: self.movieDetailState.movie?.posterURL) { phase in
-                    switch phase {
-                    case .success(let image):
-                        // Resim başarıyla yüklendi
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 120, height: 180)
-                            .clipShape(RoundedRectangle(cornerRadius:12))
-                        
-                        Image(systemName: "heart.circle.fill")
-                            .font(.system(.callout))
-                            .fontWeight(.bold)
-                            .background(.yellow)
-                            .clipShape(Circle())
-                            .foregroundStyle(.black)
-                            .offset(y: -10)
-                            .tint(.yellow)
-                        
-                    case .failure(_): 
-                        // Resim yüklenemedi
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 120, height: 180)
-                                .clipShape(RoundedRectangle(cornerRadius:12))
-                            Text("Resim yüklenemedi.")
-                                .font(.subheadline)
-                                .multilineTextAlignment(.center)
-                                .foregroundStyle(.white)
-                        }
-                        
-                    case .empty:
-                        // URL boş
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 120, height: 180)
-                                .clipShape(RoundedRectangle(cornerRadius:12))
-                            Text("Resim URL'si boş.")
-                                .font(.subheadline)
-                                .multilineTextAlignment(.center)
-                                .foregroundStyle(.white)
-                        }
-                        
-                    @unknown default:
-                        // Bilinmeyen durum
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 120, height: 180)
-                            .clipShape(RoundedRectangle(cornerRadius:12))
-                            Text("Bilinmeyen bir hata oluştu.")
-                                .font(.subheadline)
-                                .multilineTextAlignment(.center)
-                                .foregroundStyle(.white)
-                        }
-                        
-                    }
+                if self.movieFavoriteState.image != nil {
+                    Image(uiImage:self.movieFavoriteState.image!)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 120, height: 180)
+                        .clipShape(RoundedRectangle(cornerRadius:12))
+                    
+                    Image(systemName: "heart.circle.fill")
+                        .font(.system(.callout))
+                        .fontWeight(.bold)
+                        .background(.yellow)
+                        .clipShape(Circle())
+                        .foregroundStyle(.black)
+                        .offset(y:90)
+                        .tint(.yellow)
                 }
-                
-                
-
-                
+                else {
+                    Rectangle()
+                        .frame(width: 120, height: 180)
+                        .clipShape(RoundedRectangle(cornerRadius:12))
+                }
             }
         }//: VSTACK
         .onAppear{
-            self.movieDetailState.loadMovie(id: self.movieID)
-                
+            self.movieFavoriteState.loadMovie(id: self.movieID)
+            if self.movieFavoriteState.movie != nil{
+                self.movieFavoriteState.loadImage()
+            }
         }
     }
 }
@@ -112,24 +72,61 @@ struct FavoriteItem: View {
 
 
 
-//                if self.imageLoader.image != nil {
-//                    Image(uiImage:self.imageLoader.image!)
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: 120, height: 180)
-//                        .clipShape(RoundedRectangle(cornerRadius:12))
-//
-//                    Image(systemName: "heart.circle.fill")
-//                        .font(.system(.callout))
-//                        .fontWeight(.bold)
-//                        .background(.yellow)
-//                        .clipShape(Circle())
-//                        .foregroundStyle(.black)
-//                        .offset(y:90)
-//                        .tint(.yellow)
-//                }
-//                else {
-//                    Rectangle()
-//                        .frame(width: 120, height: 180)
-//                        .clipShape(RoundedRectangle(cornerRadius:12))
-//                }
+
+
+//AsyncImage(url: self.movieFavoriteState.movie?.posterURL) { phase in
+//    switch phase {
+//    case .success(let image):
+//        // Resim başarıyla yüklendi
+//        image
+//            .resizable()
+//            .scaledToFit()
+//            .frame(width: 120, height: 180)
+//            .clipShape(RoundedRectangle(cornerRadius:12))
+//        
+//        Image(systemName: "heart.circle.fill")
+//            .font(.system(.callout))
+//            .fontWeight(.bold)
+//            .background(.yellow)
+//            .clipShape(Circle())
+//            .foregroundStyle(.black)
+//            .offset(y: -10)
+//            .tint(.yellow)
+//        
+//    case .failure(_):
+//        // Resim yüklenemedi
+//        ZStack {
+//            Rectangle()
+//                .frame(width: 120, height: 180)
+//                .clipShape(RoundedRectangle(cornerRadius:12))
+//            Text("Resim yüklenemedi.")
+//                .font(.subheadline)
+//                .multilineTextAlignment(.center)
+//                .foregroundStyle(.white)
+//        }
+//        
+//    case .empty:
+//        // URL boş
+//        ZStack {
+//            Rectangle()
+//                .frame(width: 120, height: 180)
+//                .clipShape(RoundedRectangle(cornerRadius:12))
+//            Text("Resim URL'si boş.")
+//                .font(.subheadline)
+//                .multilineTextAlignment(.center)
+//                .foregroundStyle(.white)
+//        }
+//        
+//    @unknown default:
+//        // Bilinmeyen durum
+//        ZStack {
+//            Rectangle()
+//                .frame(width: 120, height: 180)
+//                .clipShape(RoundedRectangle(cornerRadius:12))
+//            Text("Bilinmeyen bir hata oluştu.")
+//                .font(.subheadline)
+//                .multilineTextAlignment(.center)
+//                .foregroundStyle(.white)
+//        }
+//    }
+//}

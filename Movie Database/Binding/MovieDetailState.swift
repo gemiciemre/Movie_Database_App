@@ -11,7 +11,7 @@ class MovieDetailState: ObservableObject {
     
     private let movieService: MovieService
     @Published var movie: Movie?
-    @Published var isLoading = false //true
+    @Published var isLoading = false
     @Published var error: NSError?
     
     init(movieService: MovieService = MovieStore.shared) {

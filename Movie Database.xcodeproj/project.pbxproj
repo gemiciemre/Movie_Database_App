@@ -24,6 +24,7 @@
 		EBA214D22AE01EA700EC9714 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA214D12AE01EA700EC9714 /* MovieService.swift */; };
 		EBA214D42AE02FC100EC9714 /* MovieStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA214D32AE02FC100EC9714 /* MovieStore.swift */; };
 		EBA214D62AE0352400EC9714 /* Utilty.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA214D52AE0352400EC9714 /* Utilty.swift */; };
+		EBAEF7A52B23873900755E46 /* MovieFavoriteState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAEF7A42B23873900755E46 /* MovieFavoriteState.swift */; };
 		EBB642262AE91CFE00EBF324 /* NavigationBarDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB642252AE91CFE00EBF324 /* NavigationBarDetailView.swift */; };
 		EBB642282AE91E7800EBF324 /* HeaderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB642272AE91E7800EBF324 /* HeaderDetailView.swift */; };
 		EBB6422A2AE925F300EBF324 /* IMDBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB642292AE925F300EBF324 /* IMDBView.swift */; };
@@ -79,6 +80,7 @@
 		EBA214D12AE01EA700EC9714 /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
 		EBA214D32AE02FC100EC9714 /* MovieStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieStore.swift; sourceTree = "<group>"; };
 		EBA214D52AE0352400EC9714 /* Utilty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilty.swift; sourceTree = "<group>"; };
+		EBAEF7A42B23873900755E46 /* MovieFavoriteState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFavoriteState.swift; sourceTree = "<group>"; };
 		EBB642252AE91CFE00EBF324 /* NavigationBarDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarDetailView.swift; sourceTree = "<group>"; };
 		EBB642272AE91E7800EBF324 /* HeaderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderDetailView.swift; sourceTree = "<group>"; };
 		EBB642292AE925F300EBF324 /* IMDBView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDBView.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				EB9FAFA32AEAA90D0010EBF0 /* MovieListState.swift */,
 				EB9FAFA72AEACCBB0010EBF0 /* MovieDetailState.swift */,
 				EB17696D2B1F8A8F002B0CF8 /* MovieSearchState.swift */,
+				EBAEF7A42B23873900755E46 /* MovieFavoriteState.swift */,
 			);
 			path = Binding;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				EB9FAFA82AEACCBB0010EBF0 /* MovieDetailState.swift in Sources */,
 				EBB642382AE9625400EBF324 /* BlurEffectView.swift in Sources */,
 				EBE30EDB2AE44C1E0070E66B /* ImageLoader.swift in Sources */,
+				EBAEF7A52B23873900755E46 /* MovieFavoriteState.swift in Sources */,
 				EBE30ECE2AE3E8DC0070E66B /* Constant.swift in Sources */,
 				EBB6422E2AE9277800EBF324 /* ReviewCountView.swift in Sources */,
 				EBB6424F2AEA5F7400EBF324 /* ActivityIndicatorView.swift in Sources */,
@@ -562,6 +566,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -591,6 +596,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (

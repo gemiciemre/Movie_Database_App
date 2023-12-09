@@ -13,7 +13,6 @@ struct MovieDetailView: View {
     let movieId: Int
     @ObservedObject private var movieDetailState = MovieDetailState()
     
-    
     var body: some View {
         ZStack {
             LoadingView(isLoading: self.movieDetailState.isLoading, error: self.movieDetailState.error) {
@@ -36,16 +35,13 @@ struct DetailView: View {
     
     // MARK: - PROPERTIES
     
-    
-    
     let movie: Movie
-    let imageLoader = ImageLoader()
+    @ObservedObject var imageLoader = ImageLoader()
+    @ObservedObject private var articleContent: ViewFrame = ViewFrame()
     
     private let imageHeight: CGFloat = 500
     private let collapsedImageHeight: CGFloat = 75
     
-    
-    @ObservedObject private var articleContent: ViewFrame = ViewFrame()
     @State private var titleRect: CGRect = .zero
     @State private var headerImageRect: CGRect = .zero
     
@@ -74,7 +70,6 @@ struct DetailView: View {
         return 0
     }
     
-    
     func getHeightForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
         let offset = getScrollOffset(geometry)
         let imageHeight = geometry.size.height
@@ -99,7 +94,6 @@ struct DetailView: View {
     }
     
     // 1
-    
     private func getHeaderTitleOffset() -> CGFloat {
         let currentYPos = titleRect.midY
         
@@ -161,7 +155,7 @@ struct DetailView: View {
                 }//: VSTACK
                 .padding(.horizontal)
                 .padding(.top, 16.0)
-//                .background(BlurEffectView(style: .dark))//.padding(.top,-50))
+                //                .background(BlurEffectView(style: .dark))//.padding(.top,-50))
             }
             .offset(y: imageHeight) // + 16
             .background(GeometryGetter(rect: $articleContent.frame))
@@ -199,7 +193,6 @@ struct DetailView: View {
                             .foregroundColor(.white)
                             .offset(x: 0, y: self.getHeaderTitleOffset())
                     }
-                    
                 }
                 .clipped()
                 .offset(x: 0, y: self.getOffsetForHeaderImage(geometry))
@@ -224,10 +217,8 @@ struct DetailView: View {
     NavigationStack {
         MovieDetailView(movieId: Movie.stubbedMovie.id)
     }
-//    DetailView(movie: movieSample)
 }
 
-//movieId: Movie.stubbedMovie.id
 
 struct NavBackButton: View {
     let dismiss: DismissAction
@@ -241,14 +232,13 @@ struct NavBackButton: View {
                 .font(.title)
                 .shadow(color: .black, radius: 2, x: 0, y: 2)
                 .foregroundStyle(Color("ColorIMDB"))
-                
         }
     }
 }
 
 struct FavoriteButton: View {
     
-    @StateObject private var favoriteManager = Favorite()
+    @ObservedObject private var favoriteManager = Favorite()
     let movieID: Int
     
     var body: some View {

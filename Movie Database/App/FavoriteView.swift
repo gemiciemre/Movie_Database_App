@@ -10,7 +10,7 @@ import SwiftUI
 struct FavoriteView: View {
     
 
-    @ObservedObject var favoriteManager = Favorite()
+    @StateObject var favoriteManager = Favorite()
     
     @State private var favoriteSearch: String = ""
 
@@ -58,5 +58,4 @@ struct FavoriteView: View {
 
 #Preview {
     FavoriteView()
-        .environmentObject(Favorite())
 }

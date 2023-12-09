@@ -16,17 +16,15 @@ struct HomeView: View {
     
     @State private var isSearchViewVisible = false
     @State private var detailViewActive = false
-    
     @State private var selectedMovieId: Int?
     
     @EnvironmentObject var movieClass : Movies
     
     @ObservedObject private var nowPlayingState = MovieListState()
     
-    
     // MARK: - BODY
     var body: some View {
-        //        if movieClass.showingMovie == false && movieClass.selectedMovie == nil {
+//        if movieClass.showingMovie == false && movieClass.selectedMovie == nil {
         NavigationView {
             ZStack{
                 VStack(spacing: 0){
@@ -51,7 +49,7 @@ struct HomeView: View {
                                 .frame(minHeight: 310)
                             
                             GenreView()
-//                                .frame(width: 350)
+                            //                                .frame(width: 350)
                                 .padding(.vertical)
                             
                             Text("Now Playing")
@@ -85,11 +83,9 @@ struct HomeView: View {
             .onAppear{
                 self.nowPlayingState.loadMovies(with: .nowPlaying)
             }
-//            .background(Color("ColorBackground"))
+            //            .background(Color("ColorBackground"))
         }
         .accentColor(.black)
-        
-        
     }
 }
 

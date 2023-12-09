@@ -9,8 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject var favoriteManager = Favorite()
-    
     var body: some View {
         TabView(){
             HomeView()
@@ -19,7 +17,6 @@ struct ContentView: View {
                     Text("Home")
                 })
             FavoriteView()
-                .environmentObject(favoriteManager)
                 .tabItem({
                     Image(systemName: "heart")
                     Text("Favorites")
@@ -36,5 +33,4 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .environmentObject(Favorite())
 }
