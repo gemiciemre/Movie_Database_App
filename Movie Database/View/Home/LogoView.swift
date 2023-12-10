@@ -11,18 +11,20 @@ struct LogoView: View {
     var body: some View {
         HStack(spacing: 8, content: {
             Text("Movie".uppercased())
-                .font(.title3)
-                .fontWeight(.semibold)
+                .font(.custom("Gotham-Bold", size: 20))
+                .foregroundStyle(Color("ColorText"))
                 .foregroundStyle(.black)
             
             Image("logo-icon")
-                .resizable()
+                .renderingMode(.template)
+                .foregroundColor(Color("ColorIMDB"))
+//                .resizable()
                 .scaledToFit()
                 .frame(width: 30,height: 30,alignment: .center)
             
             Text("Database".uppercased())
-                .font(.title3)
-                .fontWeight(.semibold)
+                .font(.custom("Gotham-Bold", size: 20))
+                .foregroundStyle(Color("ColorText"))
                 .foregroundStyle(.black)
         })//: HSTACK
     }
@@ -31,4 +33,5 @@ struct LogoView: View {
 #Preview {
     LogoView()
         .padding()
+        .background(Color("ColorNavigationBar"))
 }

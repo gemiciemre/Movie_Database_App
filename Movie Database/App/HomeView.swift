@@ -21,6 +21,7 @@ struct HomeView: View {
     @EnvironmentObject var movieClass : Movies
     
     @ObservedObject private var nowPlayingState = MovieListState()
+    @ObservedObject private var popularPlayingState = MovieListState()
     
     // MARK: - BODY
     var body: some View {
@@ -44,18 +45,37 @@ struct HomeView: View {
                     // MARK: - SCROLL
                     ScrollView(.vertical, showsIndicators:false){
                         VStack(spacing: 0){
-                            FilmBannerTabView()
-                                .padding(.vertical,10)
-                                .frame(minHeight: 310)
+                            TabView{
+                                if popularPlayingState.movies != nil{
+                                    ForEach(popularPlayingState.movies!){ item in
+                                        NavigationLink(destination:MovieDetailView(movieId: item.id)){
+                                            VStack(alignment:.center){
+                                                FilmBannerTabView(movie: item)
+                                                
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    LoadingView(
+                                        isLoading: self.nowPlayingState.isLoading,
+                                        error: self.nowPlayingState.error){
+                                            self.nowPlayingState.loadMovies(with: .topRated)
+                                        }
+                                }
+                            }//: TAB VIEW
+                            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+//                            .padding(.vertical,10)
+                            .frame(minHeight: 310, alignment: .center) //, idealHeight: 250, maxHeight: .infinity
+                            .shadow(color: .black, radius: 2, x: 0, y: 2)
                             
-                            GenreView()
-                            //                                .frame(width: 350)
+                            GenreGridView()
                                 .padding(.vertical)
                             
                             Text("Now Playing")
-                                .font(.avenirNext(size: 25))
-                                .fontWeight(.semibold)
-                                .foregroundColor(.black)
+                                .font(.custom("Gotham-Bold", size: 25))
+                                .fontWeight(.bold)
+                                .foregroundColor(Color("ColorText"))
                                 .padding()
                             
                             LazyVGrid(columns: gridLayout,spacing: 15){
@@ -82,10 +102,14 @@ struct HomeView: View {
             .ignoresSafeArea(.all,edges: .top)
             .onAppear{
                 self.nowPlayingState.loadMovies(with: .nowPlaying)
+                self.popularPlayingState.loadMovies(with: .popular)
             }
-            //            .background(Color("ColorBackground"))
+            .background(Color("ColorBackground"))
+            
         }
         .accentColor(.black)
+        
+
     }
 }
 

@@ -11,7 +11,11 @@ import SwiftUI
 
 let banners: [Banner] = Bundle.main.decodeNew("banner_image.json")
 let movieSample: Movie = Bundle.main.decodeNew("movie_info.json")
+let genres : [Genre] = Bundle.main.decodeNew("genre_list.json")
 
+//COLOR
+let colorBackground : Color = Color("ColorBackground")
+let colorGray : Color = Color(UIColor.systemGray)
 
 
 // LAYOUT

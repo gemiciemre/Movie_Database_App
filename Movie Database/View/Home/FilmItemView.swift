@@ -23,21 +23,23 @@ struct FilmItemView: View {
                         .scaledToFit()
                         .frame(width: 185, height: 279)
                         .clipShape(RoundedRectangle(cornerRadius:12))
-                        .shadow(color: .gray, radius: 2, x: 0, y: 2)
+                        .shadow(color: .black, radius: 2, x: 0, y: 2)
                     
                 } else {
                     Rectangle()
                         .frame(width: 185, height: 279)
                         .clipShape(RoundedRectangle(cornerRadius:12))
                     Text("Movie Title")
-                        .font(.headline)
+                        .font(.custom("Gotham-Bold",size: 20))
                 }
                 
             }
             //NAME
-            Text(movie.title)
-                .font(.headline)
+            Text(movie.title.uppercased())
+                .font(.custom("GothamBook",size: 13))
+                .foregroundStyle(Color("ColorText"))
                 .lineLimit(1)
+                .shadow(color: .black, radius: 0.75, x: 0, y: 1)
                 .multilineTextAlignment(.center)
         }//: VSTACK
         
@@ -49,4 +51,5 @@ struct FilmItemView: View {
 
 #Preview(traits: .sizeThatFitsLayout) {
     FilmItemView(movie: Movie.stubbedMovie)
+        .background(Color("ColorBackground"))
 }

@@ -26,6 +26,7 @@ struct NavigationBarView: View {
             
             Spacer()
         }
+        .background(Color("ColorNavigationBar"))
     }
 }
 

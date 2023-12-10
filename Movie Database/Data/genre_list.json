@@ -1,0 +1,47 @@
+[
+    {
+        "id" : 1,
+        "name": "Action",
+        "image" : "action"
+    },
+    {
+        "id" : 2,
+        "name": "Science Fiction",
+        "image" : "sci-fi"
+    },
+    {
+        "id" : 3,
+        "name": "Drama",
+        "image" : "drama"
+    },
+    {
+        "id" : 4,
+        "name": "Fantasy",
+        "image" : "fantasy"
+    },
+    {
+        "id" : 5,
+        "name": "Comedy",
+        "image" : "comedy"
+    },
+    {
+        "id" : 6,
+        "name": "Animation",
+        "image" : "animation"
+    },
+    {
+        "id" : 7,
+        "name": "Romantic",
+        "image" : "romantic"
+    },
+    {
+        "id" : 8,
+        "name": "Mistery",
+        "image" : "mistery"
+    },
+    {
+        "id" : 9,
+        "name": "Horror",
+        "image" : "horror"
+    }
+]

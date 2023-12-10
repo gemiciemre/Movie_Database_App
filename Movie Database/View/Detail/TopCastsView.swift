@@ -27,14 +27,6 @@ struct TopCastsView: View {
             HStack{
                 ForEach(casts.prefix(9), id: \.self){ item in
                     HStack{
-//                        AsyncImage(url: URL(string:"https://image.tmdb.org/t/p/w500\(item.profilePath )")!)
-//                            //.resizable()
-//                            //.scaledToFit()
-//                            //.scaledToFill()
-//                            .
-//                            .frame(width: 50,height: 90)
-//                            .clipShape(Capsule())
-//
                         AsyncImage(url: URL(string:"https://image.tmdb.org/t/p/w500\(item.profilePath ?? "/7rwSXluNWZAluYMOEWBxkPmckES.jpg" )")!) { phase in
                               switch phase {
                               case .empty:
@@ -60,7 +52,7 @@ struct TopCastsView: View {
                                 .foregroundStyle(.white)
                                 .font(.headline)
                             Text(item.character)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(Color("ColorText"))
                         }
                     }
                 }

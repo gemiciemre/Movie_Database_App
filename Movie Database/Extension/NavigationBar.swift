@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 extension UINavigationBar {
     static func changeAppearance(clear: Bool) {
@@ -21,5 +22,6 @@ extension UINavigationBar {
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().backgroundColor = UIColor(named:"NavigationBarColor")
     }
 }

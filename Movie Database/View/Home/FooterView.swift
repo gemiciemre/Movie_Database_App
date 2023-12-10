@@ -21,7 +21,7 @@ struct FooterView: View {
                 //.renderingMode(.template)
                 .foregroundStyle(.gray)
                 .layoutPriority(0)
-            Text("Copyright © Emre GEMİCİ \nAll right reserved")
+            Text("Copyright © Emre & Seda GEMİCİ \nAll right reserved")
                 .font(.footnote)
                 .fontWeight(.bold)
                 .foregroundColor(.gray)
