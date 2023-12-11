@@ -39,7 +39,7 @@ struct HomeView: View {
                             .connectedScenes
                             .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
                             .first { $0.isKeyWindow }?.safeAreaInsets.top)
-                        .background(Color.white)
+                        .background(Color("ColorNavigationBar"))
                         .shadow(color: Color.black.opacity(0.05), radius: 5,x: 0,y:5)
                     
                     // MARK: - SCROLL
@@ -99,6 +99,7 @@ struct HomeView: View {
                     }//: SCROLL
                 }//: VSTACK
             }//: ZSTACK
+            
             .ignoresSafeArea(.all,edges: .top)
             .onAppear{
                 self.nowPlayingState.loadMovies(with: .nowPlaying)
@@ -108,8 +109,6 @@ struct HomeView: View {
             
         }
         .accentColor(.black)
-        
-
     }
 }
 

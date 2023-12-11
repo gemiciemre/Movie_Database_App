@@ -24,7 +24,7 @@ struct SearchView: View {
                         .connectedScenes
                         .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
                         .first { $0.isKeyWindow }?.safeAreaInsets.top)
-                    .background(Color.white)
+                    .background(Color("ColorNavigationBar"))
                     .shadow(color: Color.black.opacity(0.05), radius: 5,x: 0,y:5)
                 List{
                     SearchBarView(placeholder: "Search movies", text: self.$movieSearchState.query)
@@ -48,12 +48,17 @@ struct SearchView: View {
                     
                     Spacer()
                 }
+                
                 .listStyle(.inset)
                 .onAppear {
                     self.movieSearchState.startObserve()
                 }
+                .background(Color("ColorBackground"))
+                
             }
             .ignoresSafeArea(.all,edges: .top)
+            
+            
         }
     }
 }

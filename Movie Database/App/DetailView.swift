@@ -10,6 +10,7 @@ import SwiftUI
 
 struct MovieDetailView: View {
     
+    
     let movieId: Int
     @ObservedObject private var movieDetailState = MovieDetailState()
     
@@ -214,9 +215,9 @@ struct DetailView: View {
 }
 
 #Preview {
-    NavigationStack {
+   NavigationStack {
         MovieDetailView(movieId: Movie.stubbedMovie.id)
-    }
+   }
 }
 
 

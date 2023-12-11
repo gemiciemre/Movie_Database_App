@@ -27,7 +27,7 @@ struct FavoriteView: View {
                         .connectedScenes
                         .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
                         .first { $0.isKeyWindow }?.safeAreaInsets.top)
-                    .background(Color.white)
+                    .background(Color("ColorNavigationBar"))
                     .shadow(color: Color.black.opacity(0.05), radius: 5,x: 0,y:5)
                 
                 
@@ -48,6 +48,7 @@ struct FavoriteView: View {
                 }
             }
             .ignoresSafeArea(.all,edges:.top)
+            .background(Color("ColorBackground"))
         }
         .onAppear{
             favoriteManager.loadFavoriteMovieIDs()
