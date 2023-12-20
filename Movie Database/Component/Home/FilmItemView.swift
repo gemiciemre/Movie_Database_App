@@ -38,6 +38,7 @@ struct FilmItemView: View {
             Text(movie.title.uppercased())
                 .font(.custom("GothamBook",size: 13))
                 .foregroundStyle(Color("ColorText"))
+                .frame(width: 185)
                 .lineLimit(1)
                 .shadow(color: .black, radius: 0.75, x: 0, y: 1)
                 .multilineTextAlignment(.center)

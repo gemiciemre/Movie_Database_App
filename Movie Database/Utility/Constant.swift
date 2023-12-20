@@ -13,6 +13,8 @@ let banners: [Banner] = Bundle.main.decodeNew("banner_image.json")
 let movieSample: Movie = Bundle.main.decodeNew("movie_info.json")
 let genres : [Genre] = Bundle.main.decodeNew("genre_list.json")
 
+let sampleGenres = [MovieGenre(id: 1, name: "DefaultGenre1"),MovieGenre(id: 2, name: "DefaultGenre2")]
+
 //COLOR
 let colorBackground : Color = Color("ColorBackground")
 let colorGray : Color = Color(UIColor.systemGray)
@@ -27,6 +29,10 @@ var gridLayout: [GridItem] {
 }
 var gridLayoutFavoriteItem: [GridItem] {
     return Array(repeating: GridItem(.flexible(),spacing: rowSpacing), count: 3)
+}
+
+var homeViewGridLayout: [GridItem] {
+    return Array(repeating: GridItem(.flexible(),spacing: rowSpacing), count: 1)
 }
 
 

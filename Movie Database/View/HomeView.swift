@@ -10,18 +10,20 @@ import SwiftUI
 struct HomeView: View {
     // MARK: - PROPERTIES
     
+    
     init() {
         UINavigationBar.changeAppearance(clear: true)
+        
     }
     
     @State private var isSearchViewVisible = false
     @State private var detailViewActive = false
     @State private var selectedMovieId: Int?
     
-    @EnvironmentObject var movieClass : Movies
     
     @ObservedObject private var nowPlayingState = MovieListState()
     @ObservedObject private var popularPlayingState = MovieListState()
+    @ObservedObject private var upcomingPlayingState = MovieListState()
     
     // MARK: - BODY
     var body: some View {
@@ -72,27 +74,56 @@ struct HomeView: View {
                             GenreGridView()
                                 .padding(.vertical)
                             
-                            Text("Now Playing")
-                                .font(.custom("Gotham-Bold", size: 25))
-                                .fontWeight(.bold)
-                                .foregroundColor(Color("ColorText"))
-                                .padding()
+                            // MARK: - UPCOMING
+                            TitleView(title: "Upcoming")
+                                .padding(.vertical)
                             
-                            LazyVGrid(columns: gridLayout,spacing: 15){
-                                if nowPlayingState.movies != nil {
-                                    ForEach(nowPlayingState.movies!){ item in
-                                        NavigationLink(destination: MovieDetailView(movieId: item.id)){
-                                            FilmItemView(movie: item)
+                            ScrollView(.horizontal, showsIndicators: false){
+                                HStack(alignment:.top ,spacing: 16){
+                                    if upcomingPlayingState.movies != nil {
+                                        ForEach(upcomingPlayingState.movies!){ item in
+                                            NavigationLink(destination: MovieDetailView(movieId: item.id)){
+                                                FilmItemView(movie: item)
+                                            }
                                         }
+                                    }else{
+                                        LoadingView(
+                                            isLoading: self.upcomingPlayingState.isLoading,
+                                            error: self.upcomingPlayingState.error){
+                                                self.upcomingPlayingState.loadMovies(with: .upcoming)
+                                            }
                                     }
-                                }else{
-                                    LoadingView(
-                                        isLoading: self.nowPlayingState.isLoading,
-                                        error: self.nowPlayingState.error){
-                                            self.nowPlayingState.loadMovies(with: .nowPlaying)
-                                        }
                                 }
                             }
+                            
+                            Spacer(minLength: 20)
+                          
+                            // MARK: - NOW PLAYING
+                            TitleView(title: "Now Playing")
+                                .padding(.vertical)
+                            
+                            ScrollView(.horizontal, showsIndicators: false){
+                                HStack(alignment:.top ,spacing: 16){
+                                    if nowPlayingState.movies != nil {
+                                        ForEach(nowPlayingState.movies!){ item in
+                                            NavigationLink(destination: MovieDetailView(movieId: item.id)){
+                                                FilmItemView(movie: item)
+                                            }
+                                        }
+                                    }else{
+                                        LoadingView(
+                                            isLoading: self.nowPlayingState.isLoading,
+                                            error: self.nowPlayingState.error){
+                                                self.nowPlayingState.loadMovies(with: .nowPlaying)
+                                            }
+                                    }
+                                }
+                            }
+                            
+                            
+                            
+                            Spacer(minLength: 50)
+                            
                             // MARK: - FOOTER
                             FooterView()
                         }
@@ -104,8 +135,10 @@ struct HomeView: View {
             .onAppear{
                 self.nowPlayingState.loadMovies(with: .nowPlaying)
                 self.popularPlayingState.loadMovies(with: .popular)
+                self.upcomingPlayingState.loadMovies(with: .upcoming)
             }
             .background(Color("ColorBackground"))
+            .toolbar(.visible,for: .tabBar)
             
         }
         .accentColor(.black)
@@ -132,4 +165,23 @@ struct HomeView: View {
 //        MovieDetailView(movieId: selectedId)
 //    }
 //}
+
+
+/*
+ LazyVGrid(columns: gridLayout,spacing: 15){
+      if nowPlayingState.movies != nil {
+          ForEach(nowPlayingState.movies!){ item in
+              NavigationLink(destination: MovieDetailView(movieId: item.id)){
+                  FilmItemView(movie: item)
+              }
+          }
+      }else{
+          LoadingView(
+              isLoading: self.nowPlayingState.isLoading,
+              error: self.nowPlayingState.error){
+                  self.nowPlayingState.loadMovies(with: .nowPlaying)
+              }
+      }
+  }
+ */
 

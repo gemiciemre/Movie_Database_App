@@ -14,7 +14,7 @@ struct SearchView: View {
     @State private var searchMovie: String = ""
     
     var body: some View {
-        NavigationView{
+        NavigationStack{
             VStack(alignment: .center,spacing: 0){
                 NavigationBarView()
                     .padding(.horizontal,15)
@@ -26,10 +26,12 @@ struct SearchView: View {
                         .first { $0.isKeyWindow }?.safeAreaInsets.top)
                     .background(Color("ColorNavigationBar"))
                     .shadow(color: Color.black.opacity(0.05), radius: 5,x: 0,y:5)
-                List{
-                    SearchBarView(placeholder: "Search movies", text: self.$movieSearchState.query)
-                        .listRowInsets(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+                
+                SearchBarView(placeholder: "Search Movies", text: self.$movieSearchState.query)
+                    .listRowInsets(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
                     
+                
+                List{
                     LoadingView(isLoading: self.movieSearchState.isLoading, error: self.movieSearchState.error) {
                         self.movieSearchState.search(query: self.movieSearchState.query)
                         
@@ -39,27 +41,26 @@ struct SearchView: View {
                             NavigationLink(destination: MovieDetailView(movieId: movie.id)) {
                                 VStack(alignment: .leading) {
                                     Text(movie.title)
+                                     
                                     Text(movie.yearText)
+
                                 }
                             }
+                            .foregroundStyle(Color("ColorText"))
+                            .listRowBackground(Color("ColorBackground"))
                         }
                     }
-                    
-                    
-                    Spacer()
-                }
-                
+                }//: LIST
+                .scrollContentBackground(.hidden)
+                .background(Color("ColorBackground"))
                 .listStyle(.inset)
+                
                 .onAppear {
                     self.movieSearchState.startObserve()
                 }
-                .background(Color("ColorBackground"))
-                
-            }
+            }//: VSTACK
             .ignoresSafeArea(.all,edges: .top)
-            
-            
-        }
+        }//: NAVIGATION
     }
 }
 

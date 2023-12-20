@@ -13,6 +13,9 @@ struct FilmBannerTabView: View {
     
     let movie: Movie
     
+    var genres: [MovieGenre]? = nil
+    let index = 1
+    
     var body: some View {
         VStack(alignment: .center){
             if self.imageLoader.image != nil {
@@ -23,21 +26,46 @@ struct FilmBannerTabView: View {
                         .frame(width: 370,height: 280)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                         .overlay{
-                            VStack(alignment: .center){
-                                Text(self.movie.title.uppercased())
-                                    .font(.custom("Gotham-Bold", size: 17))
+                            VStack(alignment:.center, spacing: 15){
+                                Text(self.movie.title.uppercased()) //: MOVIE TITLE
+                                    .font(.custom("GothamMedium", size: 20))
                                     .multilineTextAlignment(.center)
-                                    .foregroundStyle(.white)
-
-                                Text("- \(self.movie.yearText) -")
-                                    .multilineTextAlignment(.center)
-                                    .font(.custom("Gotham-Thin", size: 13))
+                                    .lineLimit(2)
+                                    .frame(width: 300)
                                     .foregroundStyle(Color("ColorText"))
-                                    
+                                    .shadow(color: .black, radius: 2, x: 0, y: 0)
+                                
+                                HStack {
+                                    ForEach(self.genres?.prefix(2) ?? [
+                                        MovieGenre(id: 1, name: "DefaultGenre1"),
+                                        MovieGenre(id: 2, name: "DefaultGenre2")
+                                    ] , id:\.id ){ item in
+                                        
+                                        Text(item.name)
+                                            .font(.custom("Gotham-Bold", size: 10))
+                                            .foregroundStyle(Color("ColorIMDB"))
+                        
+                                        if index == 1 {
+                                            Circle()
+                                                .frame(width: 5, height: 5)
+                                                .foregroundColor(Color("ColorIMDB"))
+                                        }
+                                    }
+                                } //: GENRES
+                                
+                                    Text("WATCH NOW")
+                                        .font(.custom("Gotham-Bold", size: 11))
+                                        .foregroundStyle(.white)
+                                        .frame(width: 120,height: 35)
+                                        .background(.ultraThinMaterial)
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        .shadow(color: .gray, radius: 1, x: 0, y: 0)
+                                           
+                                
+                                
+
                             }
-                            .frame(minWidth: 370, maxWidth: 370, minHeight: 50, idealHeight: 60, maxHeight: 60, alignment: .center)
-                            .background(.ultraThinMaterial)
-                            .offset(y: 90)
+                            .offset(y: 60)
                         }
                     Rectangle()
                         .foregroundStyle(Color("ColorIMDB"))
@@ -98,3 +126,22 @@ Rectangle()
     .opacity(0.7)
     .offset(y:90)
 */
+
+
+/*
+ VStack(alignment: .center){
+     Text(self.movie.title.uppercased())
+         .font(.custom("Gotham-Bold", size: 17))
+         .multilineTextAlignment(.center)
+         .foregroundStyle(.white)
+     
+     Text("- \(self.movie.yearText) -")
+         .multilineTextAlignment(.center)
+         .font(.custom("Gotham-Thin", size: 13))
+         .foregroundStyle(Color("ColorText"))
+     
+ }
+ .frame(minWidth: 370, maxWidth: 370, minHeight: 50, idealHeight: 60, maxHeight: 60, alignment: .center)
+ .background(.ultraThinMaterial)
+ .offset(y: 90)
+ */

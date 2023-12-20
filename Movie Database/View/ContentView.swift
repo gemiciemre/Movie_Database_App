@@ -9,25 +9,28 @@ import SwiftUI
 
 struct ContentView: View {
     
-    
+    @State private var selectedTab: Int = 0
     
     var body: some View {
-        TabView(){
+        TabView(selection: $selectedTab){
             HomeView()
                 .tabItem({
                     Image(systemName: "house")
                     Text("Home")
                 })
+                .tag(0)
             FavoriteView()
                 .tabItem({
                     Image(systemName: "heart")
                     Text("Favorites")
                 })
+                .tag(1)
             SearchView()
                 .tabItem({
                     Image(systemName: "magnifyingglass")
                     Text("Search")
                 })
+                .tag(2)
         }
         .tint(Color.black)
         

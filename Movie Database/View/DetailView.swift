@@ -190,16 +190,18 @@ struct DetailView: View {
                     // 4
                     VStack {
                         Text(self.movie.tagline ?? "")
-                            .font(.avenirNext(size: 17))
+                            .font(.custom("Gotham-Black", size: 17))
                             .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
                             .offset(x: 0, y: self.getHeaderTitleOffset())
+                            .shadow(radius: 1)
                     }
                 }
                 .clipped()
                 .offset(x: 0, y: self.getOffsetForHeaderImage(geometry))
             }.frame(height: imageHeight)
                 .offset(x: 0, y: -(articleContent.startingRect?.maxY ?? UIScreen.main.bounds.height))
-        }
+        }//: SCROLL
         .background(Color("ColorBackground"))
         .ignoresSafeArea(edges: .all)
         .navigationBarBackButtonHidden(true)
@@ -211,6 +213,7 @@ struct DetailView: View {
                 FavoriteButton(movieID: self.movie.id)
             }
         }
+        .toolbar(.hidden,for: .tabBar)
     }
 }
 

@@ -31,7 +31,7 @@ struct TopCastsView: View {
                               switch phase {
                               case .empty:
                                   Image(systemName: "photo")
-                                      .frame(width: 50, height: 73)
+                                      .frame(width: 60, height: 80)
                               case .success(let image):
                                   image.resizable()
                                       .aspectRatio(contentMode: .fit)
